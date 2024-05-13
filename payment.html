@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BD Hackers</title>
+    <!-- CSS Styles -->
+    <style>
+        /* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+
+/* Reset and global styles */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    scroll-behavior: smooth;
+}
+
+/* CSS Variables */
+:root {
+    --bg-color: #e3edf7;
+    --gradient-white-bg: linear-gradient(0deg, #fff 0%, #edf4fa 51%, #e5eef7 100%);
+    --gradient-color-bg: linear-gradient(180deg, rgba(247, 1, 120, 1) 0%, rgba(160, 8, 156, 1) 51%, rgba(99, 13, 178, 1) 100%);
+    --main-color: #e6006d;
+    --font-color: #90979f;
+    --hover-box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+/* Body styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-color);
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header styles */
+header {
+    padding: 15px 8%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--gradient-white-bg);
+    z-index: 100;
+    transition: .3s;
+}
+
+header .logo {
+    font-size: 1.7rem;
+    font-weight: 700;
+}
+
+/* Button styles */
+.btn {
+    background: var(--gradient-color-bg);
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all .3s ease;
+}
+
+.btn:hover, .btn-box .d-CV:hover {
+    box-shadow: var(--hover-box-shadow);
+}
+
+/* Menu icon styles */
+.menu-icon {
+    position: relative;
+    display: block;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.menu-icon .bar,
+.menu-icon::after,
+.menu-icon::before {
+    content: "";
+    display: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 3px;
+    background: #000;
+    margin: 6px 0;
+    transition: .4s;
+}
+
+.menu-icon.active::before {
+    transform: rotate(-45deg) translate(-6px , 6px);
+}
+
+.menu-icon.active::after {
+    transform: rotate(45deg)translate(-8px , -8px);
+}
+
+.menu-icon.active .bar {
+    opacity: 0;
+}
+
+/* Hero info styles */
+.hero-info {
+    width: 100%;
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.hero-info h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+    color: green; /* Adjust color if needed */
+}
+
+.hero-info h2 {
+    font-size: 24px;
+    color: blue; /* Adjust color if needed */
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.hero-info h2 span {
+    font-weight: bold;
+}
+
+.discount-validity {
+    font-size: 22px;
+    color: red;
+    font-weight: bold;
+    margin-top: 2px;
+}
+.img-hero img{
+  width: 40vw;
+  height: auto;
+}
+/* For devices with a maximum width of 768px (typical tablets) */
+@media (max-width: 768px) {
+  .img-hero img {
+    width: 80vw; /* Adjust the width as per your design */
+    height: auto;
+  }
+}
+
+/* For devices with a maximum width of 576px (typical smartphones) */
+@media (max-width: 576px) {
+  .img-hero img {
+    width: 90vw; /* Adjust the width as per your design */
+    height: auto;
+  }
+}
+
+/* Style for the copy button */
+button {
+    background-color: #4CAF50; /* Green background color */
+    border: none; /* No border */
+    color: white; /* White text color */
+    padding: 8px 16px; /* Padding */
+    text-align: center; /* Centered text */
+    text-decoration: none; /* No underline */
+    display: inline-block; /* Display as inline-block */
+    font-size: 16px; /* Font size */
+    margin-left: 10px; /* Margin between button and number */
+    cursor: pointer; /* Cursor style */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Style for the copy button on hover */
+button:hover {
+    background-color: #45a049; /* Darker green background color */
+}
+
+/* Additional CSS for the table and container */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.box {
+    flex: 0 1 48%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Updated CSS for the bullet icons */
+.box p {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px; /* Adjust spacing between each step */
+}
+
+.box p::before {
+    content: '\2022'; /* Bullet character */
+    position: absolute;
+    left: 0;
+    top: 50%; /* Center the bullet vertically */
+    transform: translateY(-50%);
+    color: var(--main-color); /* Color of the bullet */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack boxes vertically on smaller screens */
+    }
+
+    .box {
+        flex: 1 1 100%; /* Take up full width on smaller screens */
+    }
+
+    .iframe-container {
+        margin-top: 20px; /* Adjust margin for iframe container */
+    }
+}
+
+/* CSS for the iframe container */
+.iframe-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh; /* Set height to viewport height */
+    margin-top: 40px; /* Adjust margin as needed */
+}
+
+/* CSS for the iframe */
+.iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Fill the entire container */
+    border: 0; /* Remove border */
+}
+
+/* Footer */
+.footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Copyright and credits */
+.copyright,
+.credits {
+    margin-bottom: 10px; /* Adjust margin as needed */
+}
+
+.copyright span,
+.credits span {
+    color: var(--main-color); /* Use your main color here */
+}
+
+    </style>
+    <!-- boxicon css link -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+</head>
+<body>
+    <div class="overlay"></div>
+    <header>
+        <a href="index.html" class="logo"><span>BD</span>Hacker's</a>
+        <div class="right-header">
+            <a href=" https://wa.me/qr/VUB5TZP3KBQHG1 " class="btn"> WhatsApp <i class='bx bx-message-dots' ></i></a>
+            <div class="menu-icon">
+                <div class="bar"></div>
+            </div>
+        </div>
+    </header>
+
+    <section class="home" id="home">
+        <div class="hero-info">
+            <h1>Bundle Package Checkout</h1>
+            <h2>কোর্স বান্ডেল প্যাকেজ টি ডাউনলোড করতে নিচের নাম্বারে সেন্ড মানি করুন এবং নিচের ফরমটি পূরণ করে সাবমিট করুন।<br> আপনার জিমেইল ইনবক্স অথবা স্প্যাম ফোল্ডার চেক করুন।<br>
+                Baksh :- <span id="copyNumber1">01959550218</span> <button onclick="copyNumber('copyNumber1')">Copy</button> <br>
+                Nagad/Rocket :- <span id="copyNumber2">01794009609</span> <button onclick="copyNumber('copyNumber2')">Copy</button>
+            </h2>           
+                <p class="discount-validity">Discount Validity: 20/5/2024</p>
+                <div class="img-hero">
+                    <img src="images/ethical.png" alt="">
+                </div>
+        </div>
+    </section>
+            <!-- Table -->
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Subtotal</th>
+                </tr>
+                <tr>
+                    <td>Ethical Hacking Course Package</td>
+                    <td>৳ 499.00</td>
+                </tr>
+                <tr>
+                    <td>Subtotal</td>
+                    <td>৳ 499.00</td>
+                </tr>
+                <tr>
+                    <td>bKash Charge</td>
+                    <td>৳ 0.00</td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong>৳ 499.00</strong></td>
+                </tr>
+            </table>
+            <div class="container">
+                <div class="box">
+                    <p><span class="dot"></span> Step 1:</p>
+                    <p><span class="icon"></span> প্রথমে উপরে দেওয়া নাম্বার কপি করুণ।</p>
+                    <p><span class="icon"></span> (bKash,Nagad,Rocket) App অথবা Ussd কোডের মধ্যেমে সেন্ড মানি অপশন সিলেক্ট করুণ।</p>
+                    <p><span class="icon"></span> BD Hacker's PAYMENT নাম্বার (_) প্রবেশ করুণ।</p>
+                    <p><span class="icon"></span> এম্যাউন্ট অর্থাৎ কত টাকা যোগ করবেন তার পরিমাণ প্রবেশ করুণ।</p>
+                    <p><span class="icon"></span> আপনার বিকাশ পিন নাম্বার প্রবেশ করুণ।</p>
+                    <p><span class="icon"></span> এরপর সেন্ড মানি করুণ।</p>
+                </div>
+                <div class="box">
+                    <p><span class="icon"></span> Step 2:</p>
+                    <p><span class="icon"></span> তারপর নিচের ফরমটি পূরণ করুন</p>
+                    <p><span class="icon"></span> প্রথম, দ্বিতীয় এবং তৃতীয় Box এ নাম, মোবাইল নাম্বার এবং জিমেইল লিখে দেবেন।</p>
+                    <p><span class="icon"></span> চতুর্থ বক্সে পেমেন্ট অপশন সিলেক্ট করুন।</p>
+                    <p><span class="icon"></span> পঞ্চম বক্সে যে নাম্বার থেকে টাকা পাঠিয়েছেন তার লাস্ট তিনটি নাম্বার দেবেন</p>
+                    <p><span class="icon"></span> ষষ্ঠ বক্সে কত টাকা পাঠিয়েছেন তা দেবেন</p>
+                    <p><span class="icon"></span> এরপর সাবমিট বাটনে ক্লিক করবেন</p>
+                    <p><span class="icon"></span> সবকিছু চেক করার পর আমরা আপনার মেইলে কোর্স দিয়ে দেবো</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Iframe container -->
+        <div class="iframe-container">
+            <!-- Google Form iframe -->
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfZY5TyqAJFdhg8i0VWQDIlkZBzE3xFe63E26Is7RwDvhFXuA/viewform?embedded=true">Loading…</iframe>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>Bd Hacker's</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          Designed by <a href="https://rnasaksbd.000webhostapp.com/"><strong><span>RNASAKS</span></strong></a>
+        </div>
+      </div>
+<script>
+    // Function to copy text to clipboard
+    function copyNumber(elementId) {
+        var element = document.getElementById(elementId);
+        var text = element.innerText || element.textContent;
+        var input = document.createElement("textarea");
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        document.body.removeChild(input);
+        alert("Copied the text: " + text);
+    }
+</script>
+</body>
+</html>
