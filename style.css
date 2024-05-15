@@ -259,19 +259,18 @@ canvas#hacker {
   justify-content: center;
   animation: animate 1s linear infinite;
 }
-
+/* Default styles for countdown container */
 .countdown-container {
   text-align: center;
-  border: 2px solid #23c51b; /* Border style */
-  border-radius: 10px; /* Rounded corners */
-  padding: 20px; /* Padding around the content */
-  background-color: #f9f9f9; /* Background color */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+  border: 2px solid #23c51b;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
 .countdown-container h2 {
-  color: #27b727; /* Text color for the heading */
+  color: #27b727;
 }
 
 .countdown-item {
@@ -282,7 +281,7 @@ canvas#hacker {
 .countdown-number {
   font-size: 36px;
   font-weight: bold;
-  color: #ff5722; /* Text color for the countdown numbers */
+  color: #ff5722;
 }
 
 .countdown-label {
@@ -290,21 +289,37 @@ canvas#hacker {
   color: #666;
 }
 
+/* Hover styles */
 .countdown-container:hover {
-  background-color: #eaeaea; /* Background color on hover */
+  background-color: #eaeaea;
 }
 
 .countdown-container:hover .countdown-number {
-  color: #e91e63; /* Text color for the countdown numbers on hover */
+  color: #e91e63;
 }
 
 .countdown-container:hover .countdown-label {
-  color: #999; /* Text color for the countdown labels on hover */
+  color: #999;
 }
 
 .countdown-item:hover {
-  transform: scale(1.1); /* Scale up on hover */
-  transition: transform 0.3s ease; /* Smooth transition */
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+/* Media queries for responsiveness */
+@media screen and (max-width: 768px) {
+  .countdown-container {
+    padding: 10px;
+  }
+  
+  .countdown-number {
+    font-size: 24px;
+  }
+  
+  .countdown-label {
+    font-size: 14px;
+  }
 }
 
 
