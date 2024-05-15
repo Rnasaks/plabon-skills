@@ -107,3 +107,14 @@ setInterval(() => {
     });
 }, 1000 / 30);
 
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Lazy load images
+    var lazyLoadImages = document.querySelectorAll('img.lazy');
+    lazyLoadImages.forEach(function(img) {
+        img.addEventListener('load', function() {
+            img.classList.add('lazy-loaded');
+        });
+        img.src = img.dataset.src;
+    });
+});

@@ -123,6 +123,14 @@ ul.navlist{
     opacity: 0;
 }
 
+.lazy {
+  filter: blur(20px);
+  transition: filter 0.3s;
+}
+.lazy-loaded {
+  filter: none;
+}
+
 /* ==================== home section css code ============================ */
 section{
   padding: 3rem 0;
