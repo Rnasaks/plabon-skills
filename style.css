@@ -132,14 +132,13 @@ ul.navlist{
 }
 
 /* ==================== home section css code ============================ */
-section{
+section {
   padding: 3rem 0;
 }
 
 body {
   margin: 0;
   padding: 0;
-  
   position: relative;
   background: var(--gradient-white-bg2); /* Set the background color or gradient for the entire page */
 }
@@ -162,58 +161,111 @@ canvas#hacker {
   align-items: center;
 }
 
-@media (min-width: 768px) {
-  .home {
-    justify-content: space-between;
-    padding: 0 8%; /* Adjust as needed */
-  }
-}
-
-.hero-info{
+.hero-info {
   width: 100%;
   max-width: 600px; /* Adjust as needed */
-  padding: 0 32px; /* Adjust as needed */
+  padding: 0 20px; /* Adjust as needed */
   text-align: center; /* Center the content */
   margin-top: 5rem;
 }
 
-.hero-info h3{
+.hero-info h3 {
   font-size: 32px; /* 2rem */
-  line-height: 40px; /* Increase the line height */
+  line-height: 48px; /* Increase the line height */
   color: #ff0000; /* Change the color to red */
+  text-align: center; /* Center align the heading */
+  text-transform: uppercase; /* Convert text to uppercase */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add a shadow effect */
+  margin-bottom: 20px; /* Add some space below the heading */
 }
+
+.img-hero {
+  text-align: center; /* Center align the image */
+}
+
 .img-hero img {
-  width: 150%; /* Increase width */
+  width: 100%; /* Adjust width to fill container */
+  max-width: 400px; /* Set maximum width */
   height: auto; /* Maintain aspect ratio */
 }
 
-
-.img-hero img{
-  width: 40vw;
-  height: auto;
+/* Button Styles */
+.elementor-button {
+  display: inline-block;
+  background-color: #0085ff;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
-.hero-info p{
-  font-size: 24px; /* Decrease the font size */
+.elementor-button:hover {
+  background-color: #0056b3;
+}
+
+
+.hero-info p {
+  font-size: 20px; /* Decrease the font size */
   color: var(--font-color);
   line-height: 1.6; /* Increase the line height */
+  margin: 0; /* Remove any default margins */
+  padding: 10px; /* Add padding around the paragraphs */
+  font-weight: bold; /* Make the text bold */
+  text-align: center; /* Center align the text */
+  text-transform: uppercase; /* Convert text to uppercase */
+  letter-spacing: 2px; /* Increase letter spacing */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add a subtle text shadow */
 }
 
-.btn-box{
-  display: flex;
-  justify-content: space-between;
-  width: 320px;
-  margin-top: 2rem;
-  margin-bottom: 6rem;
+.box {
+  background-color: #362dd5;
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  margin-top: 20px; /* Add margin to separate from other content */
 }
 
-.btn-box .btn{
-  padding: 10px;
+.box h1 {
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.box ul li {
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
 }
+
+.box ul li::before {
+  content: '✅';
+  color: #28a745;
+  margin-right: 10px;
+}
+
+
+
+.highlight {
+  color: #ffcc00; /* Text color */
+  border: 2px solid #1313b0; /* Black border */
+  padding: 5px 10px; /* Padding inside the box */
+  line-height: 1.6; /* Increase the line height */
+  font-size: 40px; /* Font size */
+  border-radius: 5px; /* Rounded corners */
+}
+
+
 .social-media {
   display: flex;
   justify-content: space-around;
@@ -259,6 +311,10 @@ canvas#hacker {
   justify-content: center;
   animation: animate 1s linear infinite;
 }
+
+
+
+
 /* Default styles for countdown container */
 .countdown-container {
   text-align: center;
@@ -267,6 +323,7 @@ canvas#hacker {
   padding: 20px;
   background-color: #f9f9f9;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px; /* Add margin to separate from other content */
 }
 
 .countdown-container h2 {
@@ -321,6 +378,7 @@ canvas#hacker {
     font-size: 14px;
   }
 }
+
 
 
 /* ==================== About section css code ============================ */
@@ -575,6 +633,12 @@ li {
 
 
 /*======================= BrakPoints ============================ */
+@media (min-width: 768px) {
+  .home {
+    justify-content: space-between;
+    padding: 0 8%; /* Adjust as needed */
+  }
+}
 
 @media(max-width:1200px){
     html{
