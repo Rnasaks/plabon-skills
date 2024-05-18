@@ -131,18 +131,23 @@ ul.navlist{
   filter: none;
 }
 
-/* ==================== home section css code ============================ */
-section {
-  padding: 3rem 0;
+/* ==================== Reset CSS ============================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* ==================== Global Styles ============================ */
 body {
   margin: 0;
   padding: 0;
+  font-family: Arial, sans-serif;
   position: relative;
-  background: var(--gradient-white-bg2); /* Set the background color or gradient for the entire page */
+  background: var(--gradient-white-bg2);
 }
 
+/* ==================== Binary Animation Background ============================ */
 canvas#hacker {
   position: fixed;
   top: 0;
@@ -152,44 +157,61 @@ canvas#hacker {
   z-index: -1;
 }
 
+/* ==================== Home Section ============================ */
+section {
+  padding: 3rem 0;
+}
+
 .home {
   position: relative;
   z-index: 1;
-  min-height: 100vh; /* Ensure the homepage takes at least the height of the viewport */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 .hero-info {
   width: 100%;
-  max-width: 600px; /* Adjust as needed */
-  padding: 0 20px; /* Adjust as needed */
-  text-align: center; /* Center the content */
+  max-width: 800px;
+  padding: 0 2px;
   margin-top: 5rem;
 }
 
 .hero-info h3 {
-  font-size: 32px; /* 2rem */
-  line-height: 48px; /* Increase the line height */
-  color: #ff0000; /* Change the color to red */
-  text-align: center; /* Center align the heading */
-  text-transform: uppercase; /* Convert text to uppercase */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add a shadow effect */
-  margin-bottom: 20px; /* Add some space below the heading */
+  font-size: 32px;
+  line-height: 48px;
+  color: #ff0000;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+}
+
+.hero-info p {
+  font-size: 24px;
+  color: var(--font-color);
+  line-height: 1.6;
+  margin: 0;
+  padding: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .img-hero {
-  text-align: center; /* Center align the image */
+  text-align: center;
+  margin-top: 20px;
 }
 
 .img-hero img {
-  width: 100%; /* Adjust width to fill container */
-  max-width: 400px; /* Set maximum width */
-  height: auto; /* Maintain aspect ratio */
+  width: 100%;
+  max-width: 400px;
+  height: auto;
 }
 
-/* Button Styles */
 .elementor-button {
   display: inline-block;
   background-color: #0085ff;
@@ -198,71 +220,20 @@ canvas#hacker {
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s;
+  margin-top: 20px;
 }
 
 .elementor-button:hover {
   background-color: #0056b3;
 }
 
-
-.hero-info p {
-  font-size: 20px; /* Decrease the font size */
-  color: var(--font-color);
-  line-height: 1.6; /* Increase the line height */
-  margin: 0; /* Remove any default margins */
-  padding: 10px; /* Add padding around the paragraphs */
-  font-weight: bold; /* Make the text bold */
-  text-align: center; /* Center align the text */
-  text-transform: uppercase; /* Convert text to uppercase */
-  letter-spacing: 2px; /* Increase letter spacing */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add a subtle text shadow */
-}
-
-.box {
-  background-color: #362dd5;
-  border: 2px solid #007bff;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  margin-top: 20px; /* Add margin to separate from other content */
-}
-
-.box h1 {
-  font-size: 20px;
-  color: #fff;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.box ul {
-  list-style: none;
-  padding: 0;
-}
-
-.box ul li {
-  font-size: 16px;
-  color: #fff;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-}
-
-.box ul li::before {
-  content: '✅';
-  color: #28a745;
-  margin-right: 10px;
-}
-
-
-
 .highlight {
-  color: #ffcc00; /* Text color */
-  border: 2px solid #1313b0; /* Black border */
-  padding: 5px 10px; /* Padding inside the box */
-  line-height: 1.6; /* Increase the line height */
-  font-size: 40px; /* Font size */
-  border-radius: 5px; /* Rounded corners */
+  color: #ffcc00;
+  border: 2px solid #1313b0;
+  padding: 5px 10px;
+  line-height: 1.6;
+  font-size: 40px;
+  border-radius: 5px;
 }
 
 
@@ -312,10 +283,44 @@ canvas#hacker {
   animation: animate 1s linear infinite;
 }
 
+/* ==================== Box Styles ============================ */
+.box {
+  background-color: #362dd5;
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 310px;
+  margin-top: 20px;
+}
 
+.box h1 {
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+}
 
+.box ul {
+  list-style: none;
+  padding: 0;
+}
 
-/* Default styles for countdown container */
+.box ul li {
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.box ul li::before {
+  content: '✅';
+  color: #28a745;
+  margin-right: 10px;
+}
+
+/* ==================== Countdown Styles ============================ */
 .countdown-container {
   text-align: center;
   border: 2px solid #23c51b;
@@ -323,7 +328,7 @@ canvas#hacker {
   padding: 20px;
   background-color: #f9f9f9;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 20px; /* Add margin to separate from other content */
+  margin-top: 20px;
 }
 
 .countdown-container h2 {
@@ -346,7 +351,6 @@ canvas#hacker {
   color: #666;
 }
 
-/* Hover styles */
 .countdown-container:hover {
   background-color: #eaeaea;
 }
@@ -364,18 +368,84 @@ canvas#hacker {
   transition: transform 0.3s ease;
 }
 
-/* Media queries for responsiveness */
+/* ==================== Responsive Styles ============================ */
+@media screen and (max-width: 1024px) {
+  .hero-info h3 {
+    font-size: 28px;
+    line-height: 40px;
+  }
+
+  .hero-info p {
+    font-size: 18px;
+  }
+
+  .elementor-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
 @media screen and (max-width: 768px) {
+  .hero-info {
+    margin-top: 3rem;
+  }
+
+  .hero-info h3 {
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  .hero-info p {
+    font-size: 16px;
+    padding: 5px;
+  }
+
+  .img-hero img {
+    max-width: 300px;
+  }
+
   .countdown-container {
     padding: 10px;
   }
-  
+
   .countdown-number {
     font-size: 24px;
   }
-  
+
   .countdown-label {
     font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-info h3 {
+    font-size: 20px;
+    line-height: 32px;
+  }
+
+  .hero-info p {
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+
+  .elementor-button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .highlight {
+    font-size: 32px;
+  }
+
+  .social-media {
+    width: 100px;
+    height: 40px;
+  }
+
+  .social-media a {
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
   }
 }
 
@@ -485,24 +555,56 @@ li {
 }
 
 
-/* Style each card */
+/* Card Styles */
+.elementor-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.elementor-col-3 {
+  flex: 0 0 calc(25% - 20px);
+  margin: 0 10px;
+}
+
 .card {
-  text-align: center;
-  margin: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
   padding: 20px;
-  border: 1px solid #ccc; /* Add border for better separation */
-  border-radius: 8px; /* Add border radius for rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  text-align: center;
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-5px);
 }
 
 .card img {
-  width: 100px; /* Adjust image size as needed */
-  height: 100px;
-  margin-bottom: 10px;
+  width: 100px;
+  height: auto;
+  margin-bottom: 15px;
 }
 
 .card p {
-  font-size: 18px;
-  color: #f8f7f7; /* Change color as needed */
+  font-size: 1rem;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .elementor-col-3 {
+      flex: 0 0 calc(50% - 20px);
+  }
+}
+
+@media (max-width: 576px) {
+  .elementor-col-3 {
+      flex: 0 0 calc(100% - 20px);
+      margin: 0 0 20px 0;
+  }
 }
 
 
