@@ -89,24 +89,43 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-const s = window.screen;
-const w = hacker.width = s.width;
-const h = hacker.height = s.height;
-const ctx = hacker.getContext("2d");
-const p = Array(Math.floor(w / 10) + 1).fill(0);
-const random = (items) => items[Math.floor(Math.random() * items.length)];
-const hex = "0123456789ABCDEFG".split("");
+ const canvas = document.getElementById('hacker');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-setInterval(() => {
-    ctx.fillStyle = "rgba(0, 0, 0, .05)";
-    ctx.fillRect(0, 0, w, h);
-    ctx.fillStyle = "green";
-    p.map((v, i) => {
-        ctx.fillText(random(hex), i * 10, v);
-        p[i] = v >= h || v > 50 + 10000 * Math.random() ? 0 : v + 10;
+    const binary = '01';
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = Array(columns).fill(1);
+
+    function draw() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#0f0';
+        ctx.font = fontSize + 'px monospace';
+
+        drops.forEach((y, index) => {
+            const text = binary.charAt(Math.floor(Math.random() * binary.length));
+            const x = index * fontSize;
+            ctx.fillText(text, x, y * fontSize);
+
+            if (y * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[index] = 0;
+            }
+            drops[index]++;
+        });
+    }
+
+    setInterval(draw, 33);
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        drops.length = Math.floor(canvas.width / fontSize);
+        drops.fill(1);
     });
-}, 1000 / 30);
-
 
 document.addEventListener("DOMContentLoaded", function() {
     // Lazy load images
