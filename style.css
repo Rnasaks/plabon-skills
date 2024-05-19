@@ -185,7 +185,7 @@ section {
 
 .hero-info p {
   font-size: 24px;
-  color: var(--font-color);
+  color: #fff;
   line-height: 1.6;
   margin: 0;
   padding: 10px;
@@ -470,11 +470,11 @@ section {
 
 
 .about-content h2{
-  color: var(--main-color);
+  color: #fff;
 }
 
 .about-content p{
-  color: var(--font-color);
+  color: #fff;
 }
 
 
