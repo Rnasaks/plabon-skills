@@ -201,8 +201,8 @@ section {
 }
 
 .img-hero img {
-  width: 100%;
-  max-width: 400px;
+  width: 400%;
+  max-width: 800px;
   height: auto;
 }
 
@@ -290,7 +290,7 @@ section {
 
 .box h1 {
   font-size: 20px;
-  color: #fff;
+  color: #e6006d;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -310,7 +310,43 @@ section {
 
 .box ul li::before {
   content: '✅';
-  color: #28a745;
+  color: #a77228;
+  margin-right: 10px;
+}
+
+.box1 {
+  background-color: #362dd5;
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: none;
+  margin-top: 20px;
+}
+
+.box1 p {
+  font-size: 20px;
+  color: #e6006d;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.box1 ul {
+  list-style: none;
+  padding: 0;
+}
+
+.box1 ul li {
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.box1 ul li::before {
+  content: '➤';
+  color: #eb1212;
   margin-right: 10px;
 }
 
@@ -405,7 +441,7 @@ section {
   }
 
   .img-hero img {
-    max-width: 300px;
+    max-width: 600px;
   }
 
   .countdown-container {
