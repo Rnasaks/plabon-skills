@@ -239,24 +239,70 @@ th {
     }
 }
 
-/* CSS for the iframe container */
-.iframe-container {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 100vh; /* Set height to viewport height */
-    margin-top: 40px; /* Adjust margin as needed */
+h1 {
+    text-align: center;
+    color: #e91397;
 }
 
-/* CSS for the iframe */
-.iframe-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; /* Fill the entire container */
-    border: 0; /* Remove border */
+/* Form section */
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+select,
+textarea,
+input[type="file"],
+input[type="number"],
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+input[type="file"] {
+    margin-top: 10px;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        max-width: 80%;
+    }
+}
+
 
 /* Footer */
 .footer {
@@ -274,8 +320,7 @@ th {
 .credits span {
     color: var(--main-color); /* Use your main color here */
 }
-
-    </style>
+  </style>
     <!-- boxicon css link -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Link Swiper's CSS -->
@@ -352,13 +397,40 @@ th {
             </div>
         </div>
 
-        <!-- Iframe container -->
-        <div class="iframe-container">
-            <!-- Google Form iframe -->
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfZY5TyqAJFdhg8i0VWQDIlkZBzE3xFe63E26Is7RwDvhFXuA/viewform?embedded=true">Loading…</iframe>
-        </div>
-    </div>
+        <h1>Course Bundle Checkout Form</h1>
+
+        <div class="container"> 
+            <form id="form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
     
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                
+                <label for="payment-method">Select Payment Method:</label>
+                <select id="payment-method" name="payment-method" required>
+                    <option value="bkash">bKash</option>
+                    <option value="nagad">Nagad</option>
+                    <option value="rocket">Rocket</option>
+                </select>
+    
+                <label for="last-three-digits">Last Three Digits of Payment Number:</label>
+                <input type="text" id="last-three-digits" name="last-three-digits" required>
+    
+                <label for="file">Upload File:</label>
+                <input type="file" id="file" name="file">
+    
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount" required>
+                
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    
+
     <div class="container">
         <div class="copyright">
           &copy; Copyright <strong><span>Bd Hackers</span></strong>. All Rights Reserved
@@ -380,6 +452,37 @@ th {
         document.body.removeChild(input);
         alert("Copied the text: " + text);
     }
+
+      // JavaScript code
+      document.getElementById("form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('message', document.getElementById('message').value);
+            formData.append('payment-method', document.getElementById('payment-method').value);
+            formData.append('last-three-digits', document.getElementById('last-three-digits').value);
+            formData.append('file', document.getElementById('file').files[0]);
+            formData.append('amount', document.getElementById('amount').value);
+            
+            fetch("https://script.google.com/macros/s/AKfycbz2Qwx4_G44dqOU5dXgb6bNbR_Ng1FqYqFL-0viy00LhZYVdtqzAeSpH1O24jgqS92T/exec", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("Form submitted successfully!");
+                    this.reset();
+                } else {
+                    alert("Form submission failed. Please try again.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An unexpected error occurred. Please try again later.");
+            });
+        });
 </script>
 </body>
 </html>
