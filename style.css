@@ -226,7 +226,7 @@ section {
   border: 2px solid #1313b0;
   padding: 5px 10px;
   line-height: 1.6;
-  font-size: 40px;
+  font-size: 36px;
   border-radius: 5px;
 }
 
@@ -496,9 +496,11 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
+  text-align: center;
   gap: 1rem;
 }
-
+ 
 .about .about-img{
   position: relative;
 }
@@ -519,13 +521,17 @@ section {
   color: #fff;
 }
 
+.about-content h3{
+  color: #fff;
+}
+
 .about-content p{
   color: #fff;
 }
 
 
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -544,6 +550,15 @@ ul {
 li {
   font-size: 20px;
   line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.highlight {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
   margin-bottom: 10px;
 }
 
@@ -594,56 +609,133 @@ li {
   margin-right: 0.5rem; /* Add some spacing between the dot icon and the list item text */
 }
 
-
-/* Card Styles */
-.elementor-row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 40px;
+/* Grid container */
+.elementor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
 }
 
-.elementor-col-3 {
-  flex: 0 0 calc(25% - 20px);
-  margin: 0 10px;
-}
-
+/* Card styling */
 .card {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
   text-align: center;
-  height: 100%;
-}
-
-.card:hover {
-  transform: translateY(-5px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card img {
-  width: 100px;
+  max-width: 100%;
   height: auto;
-  margin-bottom: 15px;
+  border-radius: 8px 8px 0 0;
 }
 
 .card p {
-  font-size: 1rem;
-  color: #555;
+  font-size: 16px;
+  margin-top: 10px;
 }
 
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design for smaller screens */
 @media (max-width: 768px) {
-  .elementor-col-3 {
-      flex: 0 0 calc(50% - 20px);
+  .elementor-grid {
+      grid-template-columns: repeat(3, 1fr);
+  }
+
+  .heading {
+      font-size: 28px;
+  }
+
+  .package-title {
+      font-size: 20px;
+  }
+
+  .card p {
+      font-size: 14px;
+      text-align: center;
   }
 }
 
-@media (max-width: 576px) {
-  .elementor-col-3 {
-      flex: 0 0 calc(100% - 20px);
-      margin: 0 0 20px 0;
+/* Container styling */
+.container {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 1200px;
+}
+
+/* Header styling */
+.heading {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+/* Grid container */
+.elementor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* Card styling */
+.card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px 8px 0 0;
+}
+
+.card p {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .elementor-grid {
+      grid-template-columns: repeat(3, 1fr);
+  }
+
+  .heading {
+      font-size: 28px;
+  }
+
+  .card p {
+      font-size: 14px;
+  }
+}
+
+/* Responsive design for very small screens */
+@media (max-width: 480px) {
+  .elementor-grid {
+      grid-template-columns: repeat(2, 1fr);
+  }
+
+  .heading {
+      font-size: 24px;
+  }
+
+  .card p {
+      font-size: 12px;
   }
 }
 
