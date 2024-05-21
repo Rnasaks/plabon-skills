@@ -303,23 +303,87 @@ input[type="file"] {
     }
 }
 
+#popup-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.25);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            z-index: 1000;
+        }
 
-/* Footer */
-.footer {
-    margin-top: 20px;
-    text-align: center;
-}
+        #popup-message p {
+            margin: 0 0 10px;
+            color: #e6006d;
+            font-weight: bold;
+        }
 
-/* Copyright and credits */
-.copyright,
-.credits {
-    margin-bottom: 10px; /* Adjust margin as needed */
-}
+        #popup-message ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-.copyright span,
-.credits span {
-    color: var(--main-color); /* Use your main color here */
-}
+        #popup-message li {
+            margin: 5px 0;
+        }
+
+        #popup-message a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        #popup-message a:hover {
+            text-decoration: underline;
+        }
+
+        #popup-message button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+
+        #popup-message button:hover {
+            background-color: #45a049;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .copyright, .credits {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+                margin: 15px;
+            }
+
+            #popup-message {
+                padding: 15px;
+            }
+        }
   </style>
     <!-- boxicon css link -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -398,7 +462,6 @@ input[type="file"] {
         </div>
 
         <h1>Course Bundle Checkout Form</h1>
-
         <div class="container"> 
             <form id="form">
                 <label for="name">Name:</label>
@@ -406,9 +469,9 @@ input[type="file"] {
                 
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
-    
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="4" required></textarea>
+        
+                <label for="message">Message (optional):</label>
+                <textarea id="message" name="message" rows="4"></textarea>
                 
                 <label for="payment-method">Select Payment Method:</label>
                 <select id="payment-method" name="payment-method" required>
@@ -416,73 +479,83 @@ input[type="file"] {
                     <option value="nagad">Nagad</option>
                     <option value="rocket">Rocket</option>
                 </select>
-    
+        
                 <label for="last-three-digits">Last Three Digits of Payment Number:</label>
                 <input type="text" id="last-three-digits" name="last-three-digits" required>
-    
-                <label for="file">Upload File:</label>
+        
+                <label for="file">Upload File (optional):</label>
                 <input type="file" id="file" name="file">
-    
+        
                 <label for="amount">Amount:</label>
                 <input type="number" id="amount" name="amount" required>
                 
                 <input type="submit" value="Submit">
             </form>
         </div>
-    
-
-    <div class="container">
-        <div class="copyright">
-          &copy; Copyright <strong><span>Bd Hackers</span></strong>. All Rights Reserved
+        
+        <div id="popup-message">
+            <p>Form Submit Successful! <br> Please Send Join Request To Access Course Bundle. Here are the links:</p>
+            <ul>
+                <li><a href="https://t.me/+PrUMn0Vpn8gzYmI1" target="_blank">Telegram Group</a></li>
+                <li><a href="https://drive.google.com/drive/folders/1mBT9wnkVFFPsU4rcYmoTwwKe5o9lU3pz" target="_blank">Google Drive Folder</a></li>
+                <li><a href="https://chat.whatsapp.com/GJHDILVZhQK1J1i42hZ1O9" target="_blank">WhatsApp Group</a></li>
+            </ul>
+            <button id="close-popup">Close</button>
         </div>
-        <div class="credits">
-          Designed by <a href="https://rnasaksbd.000webhostapp.com/"><strong><span>RNASAKS</span></strong></a>
+        
+        <div class="overlay" id="overlay"></div>
+        
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong><span>Bd Hackers</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                Designed by <a href="https://rnasaksbd.000webhostapp.com/"><strong><span>RNASAKS</span></strong></a>
+            </div>
         </div>
-      </div>
-<script>
-    // Function to copy text to clipboard
-    function copyNumber(elementId) {
-        var element = document.getElementById(elementId);
-        var text = element.innerText || element.textContent;
-        var input = document.createElement("textarea");
-        input.value = text;
-        document.body.appendChild(input);
-        input.select();
-        document.execCommand("copy");
-        document.body.removeChild(input);
-        alert("Copied the text: " + text);
-    }
-
-      // JavaScript code
-      document.getElementById("form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            
-            const formData = new FormData();
-            formData.append('name', document.getElementById('name').value);
-            formData.append('email', document.getElementById('email').value);
-            formData.append('message', document.getElementById('message').value);
-            formData.append('payment-method', document.getElementById('payment-method').value);
-            formData.append('last-three-digits', document.getElementById('last-three-digits').value);
-            formData.append('file', document.getElementById('file').files[0]);
-            formData.append('amount', document.getElementById('amount').value);
-            
-            fetch("https://script.google.com/macros/s/AKfycbz2Qwx4_G44dqOU5dXgb6bNbR_Ng1FqYqFL-0viy00LhZYVdtqzAeSpH1O24jgqS92T/exec", {
-                method: "POST",
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert("Form submitted successfully!");
-                    this.reset();
-                } else {
-                    alert("Form submission failed. Please try again.");
+        
+        <script>
+            // JavaScript code
+            document.getElementById("form").addEventListener("submit", function(event) {
+                event.preventDefault();
+                
+                const formData = new FormData();
+                formData.append('name', document.getElementById('name').value);
+                formData.append('email', document.getElementById('email').value);
+                formData.append('message', document.getElementById('message').value);
+                formData.append('payment-method', document.getElementById('payment-method').value);
+                formData.append('last-three-digits', document.getElementById('last-three-digits').value);
+                formData.append('amount', document.getElementById('amount').value);
+                
+                // Append the file only if a file is selected
+                const fileInput = document.getElementById('file');
+                if (fileInput.files.length > 0) {
+                    formData.append('file', fileInput.files[0]);
                 }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                alert("An unexpected error occurred. Please try again later.");
+        
+                fetch("https://script.google.com/macros/s/AKfycbxJQ7s5YDnD5RCLsxQIIwDjpbtlUeX8rbtLODT9FMysqFFhajMD1H-TeuVzIASTPnPe/exec", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById("popup-message").style.display = "block";
+                        document.getElementById("overlay").style.display = "block";
+                        this.reset();
+                    } else {
+                        alert("Form submission failed. Please try again.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("An unexpected error occurred. Please try again later.");
+                });
             });
-        });
-</script>
-</body>
-</html>
+        
+            document.getElementById("close-popup").addEventListener("click", function() {
+                document.getElementById("popup-message").style.display = "none";
+                document.getElementById("overlay").style.display = "none";
+            });
+        </script>
+        </body>
+        </html>
