@@ -16,34 +16,44 @@ navlist.addEventListener("click",()=>{
 })
 
 // countdown
-// Function to update the countdown timer
-function updateCountdown() {
-    // Define the target date (replace with your desired end date)
-    var targetDate = new Date("2024-05-19T00:00:00");
-  
-    // Get the current date and time
-    var currentDate = new Date();
-  
-    // Calculate the time difference between the target date and current date
-    var timeDiff = targetDate.getTime() - currentDate.getTime();
-  
-    // Calculate the remaining days, hours, minutes, and seconds
-    var days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-  
-    // Display the remaining time in the HTML elements
-    document.getElementById("days").innerText = days;
-    document.getElementById("hours").innerText = hours;
-    document.getElementById("minutes").innerText = minutes;
-    document.getElementById("seconds").innerText = seconds;
-  }
-  
-  // Call the updateCountdown function every second to keep the timer up to date
-  setInterval(updateCountdown, 1000);
-  
+ // Set the discount validity date
+ var discountValidityDate = new Date("May 21, 2024 23:59:59");
 
+ // Display the discount validity date
+ document.getElementById("discount-validity").innerText = "Discount Validity: " + discountValidityDate.toLocaleDateString();
+
+ // Get the timestamp of the discount validity date
+ var countDownDate = discountValidityDate.getTime();
+
+ // Update the count down every 1 second
+ var countdownfunction = setInterval(function() {
+
+     // Get today's date and time
+     var now = new Date().getTime();
+
+     // Find the distance between now and the count down date
+     var distance = countDownDate - now;
+
+     // Time calculations for days, hours, minutes and seconds
+     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+     // Display the result in the elements with id
+     document.getElementById("days").innerText = days;
+     document.getElementById("hours").innerText = hours;
+     document.getElementById("minutes").innerText = minutes;
+     document.getElementById("seconds").innerText = seconds;
+
+     // If the count down is finished, write some text
+     if (distance < 0) {
+         clearInterval(countdownfunction);
+         document.querySelector(".countdown-container").innerHTML = "<h2>অফার শেষ হয়েছে</h2>";
+     }
+ }, 1000);
+  // Countdown end
+ 
 
 // Sample JavaScript code to handle button click
 document.addEventListener('DOMContentLoaded', function() {
