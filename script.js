@@ -17,7 +17,7 @@ navlist.addEventListener("click",()=>{
 
 // countdown
  // Set the discount validity date
- var discountValidityDate = new Date("May 21, 2024 23:59:59");
+ var discountValidityDate = new Date("May 30, 2024 23:59:59");
 
  // Display the discount validity date
  document.getElementById("discount-validity").innerText = "Discount Validity: " + discountValidityDate.toLocaleDateString();
