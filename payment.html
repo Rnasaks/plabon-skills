@@ -203,6 +203,8 @@ button:hover {
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
+    max-width: 600px; /* Adjust max-width as needed */
+    width: 90%; /* Adjust width as needed */
 }
 
 .countdown-container p {
@@ -251,6 +253,27 @@ button:hover {
     transform: scale(1.1);
     transition: transform 0.3s ease;
 }
+
+/* Responsive Styles */
+@media only screen and (max-width: 740px) {
+    .countdown-container {
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+    .countdown-container p {
+        font-size: 18px;
+    }
+
+    .countdown-number {
+        font-size: 24px;
+    }
+
+    .countdown-label {
+        font-size: 10px;
+    }
+}
+
 
 /* Additional CSS for the table and container */
 table {
@@ -448,11 +471,6 @@ input[type="file"] {
     z-index: 999;
 }
 
-.copyright, .credits {
-    text-align: center;
-    margin: 20px 0;
-}
-
 @media (max-width: 600px) {
     .container {
         padding: 15px;
@@ -463,6 +481,26 @@ input[type="file"] {
         padding: 15px;
     }
 }
+
+.copyright,
+.credits {
+  text-align: center;
+  color: #000; /* Set your default text color */
+}
+
+.copyright span {
+  color: red; /* Set the text color to red */
+}
+
+#footer .copyright {
+  padding-top: 20px;
+}
+
+#footer .credits {
+  padding-top: 10px;
+  font-size: 13px;
+}
+
 
 </style>
     <!-- boxicon css link -->
@@ -557,13 +595,12 @@ input[type="file"] {
 
         <div class="box">
             <h1>নিয়মাবলী</h1>
-            <p><span class="icon"></span> তারপর নিচের ফরমটি পূরণ করুন</p>
             <p><span class="icon"></span> প্রথম, দ্বিতীয় এবং তৃতীয় Box এ নাম, জিমেইল এবং মেসেজ লিখে দেবেন।</p>
             <p><span class="icon"></span> চতুর্থ বক্সে পেমেন্ট অপশন সিলেক্ট করুন।</p>
-            <p><span class="icon"></span> পঞ্চম বক্সে যে নাম্বার থেকে টাকা পাঠিয়েছেন তার লাস্ট তিনটি নাম্বার দেবেন</p>
-            <p><span class="icon"></span> ষষ্ঠ বক্সে কত টাকা পাঠিয়েছেন তা দেবেন</p>
-            <p><span class="icon"></span> এরপর সাবমিট বাটনে ক্লিক করবেন</p>
-            <p><span class="icon"></span> সাবমিট করলে আমাদের ফুল বান্ডেল ডাউনলোড লিংক পেয়ে যাবেন৷ সেটায় রিকোয়েস্ট পাঠিয়ে দিবেন৷<br>টেলিগ্রামে যোগ হয়ে নিবেন৷ আপনার কোন প্রশ্ন থাকলে মেসেঞ্জারে জানাবেন৷</p>
+            <p><span class="icon"></span> পঞ্চম বক্সে যে নাম্বার থেকে টাকা পাঠিয়েছেন তার লাস্ট তিনটি নাম্বার দেবেন।</p>
+            <p><span class="icon"></span> ষষ্ঠ বক্সে কত টাকা পাঠিয়েছেন তা দেবেন।</p>
+            <p><span class="icon"></span> এরপর সাবমিট বাটনে ক্লিক করবেন।</p>
+            <p><span class="icon"></span> সাবমিট করলে আমাদের ফুল বান্ডেল ডাউনলোড লিংক পেয়ে যাবেন। সেটায় রিকোয়েস্ট পাঠিয়ে দিবেন। টেলিগ্রামে যোগ হয়ে নিবেন৷ আপনার কোন প্রশ্ন থাকলে মেসেঞ্জারে জানাবেন।</p>
         </div>
     </div>
 </div>
