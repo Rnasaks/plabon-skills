@@ -576,7 +576,6 @@ li {
 .elementor-button:hover {
   background-color: #0056b3;
 }
-
 /* Style the title */
 .package-title {
   font-size: 24px;
@@ -645,97 +644,39 @@ li {
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
   .elementor-grid {
-      grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* Change to 2 columns */
   }
 
   .heading {
-      font-size: 28px;
+    font-size: 28px;
   }
 
   .package-title {
-      font-size: 20px;
+    font-size: 20px;
   }
 
   .card p {
-      font-size: 14px;
-      text-align: center;
-  }
-}
-
-/* Container styling */
-.container {
-  margin: 0 auto;
-  padding: 20px;
-  max-width: 1200px;
-}
-
-/* Header styling */
-.heading {
-  text-align: center;
-  font-size: 32px;
-  margin-bottom: 30px;
-}
-
-/* Grid container */
-.elementor-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-}
-
-/* Card styling */
-.card {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px 8px 0 0;
-}
-
-.card p {
-  font-size: 16px;
-  margin-top: 10px;
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* Responsive design for smaller screens */
-@media (max-width: 768px) {
-  .elementor-grid {
-      grid-template-columns: repeat(3, 1fr);
-  }
-
-  .heading {
-      font-size: 28px;
-  }
-
-  .card p {
-      font-size: 14px;
+    font-size: 14px;
+    text-align: center;
   }
 }
 
 /* Responsive design for very small screens */
 @media (max-width: 480px) {
   .elementor-grid {
-      grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr); /* Change to 1 column */
   }
 
   .heading {
-      font-size: 24px;
+    font-size: 24px;
+  }
+
+  .package-title {
+    font-size: 18px; /* Adjust font size */
   }
 
   .card p {
-      font-size: 12px;
+    font-size: 12px;
   }
 }
 
