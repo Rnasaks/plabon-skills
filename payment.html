@@ -49,7 +49,7 @@ header {
     left: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between; /* Changed to space-between */
     background: var(--gradient-white-bg);
     z-index: 100;
     transition: .3s;
@@ -59,6 +59,7 @@ header {
 header .logo {
     font-size: 1.7rem;
     font-weight: 700;
+    margin-right: auto; /* Added to push BD Hackers to the left */
 }
 
 /* Button styles */
@@ -98,16 +99,17 @@ header .logo {
 }
 
 .menu-icon.active::before {
-    transform: rotate(-45deg) translate(-6px , 6px);
+    transform: rotate(-45deg) translate(-6px, 6px);
 }
 
 .menu-icon.active::after {
-    transform: rotate(45deg)translate(-8px , -8px);
+    transform: rotate(45deg) translate(-8px, -8px);
 }
 
 .menu-icon.active .bar {
     opacity: 0;
 }
+
 
 /* Hero info styles */
 .hero-info {
@@ -192,75 +194,6 @@ button:hover {
     background-color: #45a049; /* Darker green background color */
 }
 
-/* Countdown Styles */
-.countdown-container {
-    text-align: center;
-    border: 2px solid #b9122b;
-    border-radius: 20px;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 600px; /* Adjust max-width as needed */
-    width: 90%; /* Adjust width as needed */
-}
-
-.countdown-container p {
-    font-size: 24px;          
-    color: #101010;               
-    font-weight: bold;         
-    margin: 0;                
-    padding: 10px;             
-    text-transform: uppercase; 
-    letter-spacing: 1px;       
-}
-
-.countdown-container h2 {
-    color: #f71411;
-}
-
-.countdown-item {
-    display: inline-block;
-    margin: 10px;
-}
-
-.countdown-number {
-    font-size: 36px;
-    font-weight: bold;
-    color: #22ff3c;
-}
-
-.countdown-label {
-    font-size: 16px;
-    color: #666;
-}
-
-.countdown-container:hover {
-    background-color: #eaeaea;
-}
-
-.countdown-container:hover .countdown-number {
-    color: #180df8;
-}
-
-.countdown-container:hover .countdown-label {
-    color: #f71411;
-}
-
-.countdown-item:hover {
-    transform: scale(1.1);
-    transition: transform 0.3s ease;
-}
-
-/* Responsive Styles */
-@media only screen and (max-width: 600px) {
-    .countdown-item {
-        display: inline-block;
-        margin: 0 5px; /* Add margin between items */
-    }
-}
 
 
 /* Additional CSS for the table and container */
@@ -593,30 +526,6 @@ input[type="file"] {
     </div>
 </div>
 
-
-        <section>
-            <div class="countdown-container">
-                <p id="discount-validity"></p>
-                <h2>অফার শেষ হতে বাকি আছে</h2>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="days"></span>
-                    <span class="countdown-label">Days</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="hours"></span>
-                    <span class="countdown-label">Hours</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="minutes"></span>
-                    <span class="countdown-label">Minutes</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="seconds"></span>
-                    <span class="countdown-label">Seconds</span>
-                </div>
-            </div>
-        </section>
-        
         <div id="popup-message">
             <p>Form Submit Successful! <br> Please Send Join Request To Access Course Bundle. Here are the links:</p>
             <ul>
@@ -639,46 +548,6 @@ input[type="file"] {
         </div>
         
         <script>
-// countdown
- // Set the discount validity date
- var discountValidityDate = new Date("May 30, 2024 23:59:59");
-
- // Display the discount validity date
- document.getElementById("discount-validity").innerText = "Discount Validity: " + discountValidityDate.toLocaleDateString();
-
- // Get the timestamp of the discount validity date
- var countDownDate = discountValidityDate.getTime();
-
- // Update the count down every 1 second
- var countdownfunction = setInterval(function() {
-
-     // Get today's date and time
-     var now = new Date().getTime();
-
-     // Find the distance between now and the count down date
-     var distance = countDownDate - now;
-
-     // Time calculations for days, hours, minutes and seconds
-     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-     // Display the result in the elements with id
-     document.getElementById("days").innerText = days;
-     document.getElementById("hours").innerText = hours;
-     document.getElementById("minutes").innerText = minutes;
-     document.getElementById("seconds").innerText = seconds;
-
-     // If the count down is finished, write some text
-     if (distance < 0) {
-         clearInterval(countdownfunction);
-         document.querySelector(".countdown-container").innerHTML = "<h2>অফার শেষ হয়েছে</h2>";
-     }
- }, 1000);
-  // Countdown end
-
-
             // JavaScript code
             document.getElementById("form").addEventListener("submit", function(event) {
                 event.preventDefault();
