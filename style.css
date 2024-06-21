@@ -538,11 +538,13 @@ li {
 /* Style the title */
 .package-title {
   font-size: 24px;
-  color: #19b09c; /* Change color as needed */
+  color: #fded0d; /* Change color as needed */
   text-align: center;
   margin-bottom: 30px;
 }
-
+.price-red {
+  color: rgb(255, 0, 234);
+}
 /* Style the card container */
 .elementor-row {
   display: flex;
