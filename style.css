@@ -558,6 +558,7 @@ li {
   list-style: none;
   color: #e5eef7;
   text-decoration: solid;
+  text-align: center;
   padding-left: 0; /* Remove default padding */
 }
 

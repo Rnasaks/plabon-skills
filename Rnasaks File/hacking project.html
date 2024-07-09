@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BD Hackers Project Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #eaeaea;
+        }
+
+        header {
+            background-color: #222;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #ffcc00;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff6600;
+        }
+
+        .project-cards {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: #333;
+            border-radius: 10px;
+            text-align: center;
+            padding: 15px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px; /* Set a fixed height */
+            object-fit: cover; /* Ensures the image covers the area without distorting aspect ratio */
+            border-radius: 10px 10px 0 0;
+        }
+
+        .card h2 {
+            margin: 15px 0 10px;
+            font-size: 1.5em;
+            color: #ffcc00;
+        }
+
+        .card p {
+            font-size: 1em;
+            margin: 0;
+            color: #ccc;
+        }
+
+        .card a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BD Hackers Project Store</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Web Project</a></li>
+                <li><a href="#">Developer</a></li>
+                <li><a href="#">Telegram</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Play Anthem</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="project-cards">
+            <div class="card">
+                <a href='/Rnasaks File/index.html'>
+                    <img src="/images/10.jfif" alt="Location">
+                    <h2>Location Hack</h2>
+                    <p>Easy to hack anyone's live location</p>
+                </a>
+            </div>
+            <div class="card">
+                <a href='/Rnasaks File/index1.html'>
+                    <img src="/images/camerahack.jfif" alt="camerahack">
+                    <h2>Camera Hack</h2>
+                    <p>Easy to hack anyone's photos and videos</p>
+                </a>
+            </div>
+            <div class="card">
+                <a href='#'>
+                    <img src="path/to/smsbomber.png" alt="Sms Bomber">
+                    <h2>SMS Bomber</h2>
+                    <p>A powerful SMS and email bomber app</p>
+                    <p>Coming soon</p>
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
