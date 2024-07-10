@@ -33,6 +33,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
         nav ul li {
@@ -63,7 +64,8 @@
             border-radius: 10px;
             text-align: center;
             padding: 15px;
-            width: 300px;
+            width: 100%;
+            max-width: 300px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -75,8 +77,8 @@
 
         .card img {
             width: 100%;
-            height: 200px; /* Set a fixed height */
-            object-fit: cover; /* Ensures the image covers the area without distorting aspect ratio */
+            height: 200px;
+            object-fit: cover;
             border-radius: 10px 10px 0 0;
         }
 
@@ -96,6 +98,55 @@
             text-decoration: none;
             color: inherit;
         }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            nav ul li a {
+                font-size: 1em;
+            }
+
+            .card h2 {
+                font-size: 1.2em;
+            }
+
+            .card p {
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 10px;
+            }
+
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            nav ul {
+                gap: 10px;
+            }
+
+            nav ul li a {
+                font-size: 0.9em;
+            }
+
+            .card {
+                padding: 10px;
+                max-width: 100%;
+            }
+
+            .card h2 {
+                font-size: 1em;
+            }
+
+            .card p {
+                font-size: 0.8em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -103,11 +154,8 @@
         <h1>BD Hackers Project Store</h1>
         <nav>
             <ul>
-                <li><a href="#">Web Project</a></li>
-                <li><a href="#">Developer</a></li>
-                <li><a href="#">Telegram</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Play Anthem</a></li>
+                <li><a href="/index.html">Web Project</a></li>
+                <li><a href="https://rnasaksbd.000webhostapp.com/">Developer</a></li>
             </ul>
         </nav>
     </header>
@@ -122,16 +170,80 @@
             </div>
             <div class="card">
                 <a href='/Rnasaks File/index1.html'>
-                    <img src="/images/camerahack.jfif" alt="camerahack">
+                    <img src="/images/camerahack.jfif" alt="Camera Hack">
                     <h2>Camera Hack</h2>
                     <p>Easy to hack anyone's photos and videos</p>
                 </a>
             </div>
             <div class="card">
+                <a href='https://www.shorturl.at/'>
+                    <img src="/images/short url.jfif" alt="SMS Bomber">
+                    <h2>Short url</h2>
+                    <p>Shorten any URL with easy</p>
+                    <h1>Coming soon</h1>
+                </a>
+            </div>
+            <div class="card">
                 <a href='#'>
-                    <img src="path/to/smsbomber.png" alt="Sms Bomber">
+                    <img src="/images/smsboom.jfif" alt="SMS Bomber">
                     <h2>SMS Bomber</h2>
                     <p>A powerful SMS and email bomber app</p>
+                    <h1>Coming soon</h1>
+                </a>
+            </div>
+            <div class="card">
+                <a href='#'>
+                    <img src="/images/18.jfif" alt="Phishing">
+                    <h2>Phishing Attack</h2>
+                    <p>Simulate a phishing attack to test security</p>
+                    <h1>Coming soon</h1>
+                </a>
+            </div>
+            <div class="card">
+                <a href='#'>
+                    <img src="path/to/keylogger.png" alt="Keylogger">
+                    <h2>Keylogger</h2>
+                    <p>Capture keystrokes to monitor activity</p>
+                    <h1>Coming soon</h1>
+                </a>
+            </div>
+            <div class="card">
+                <a href='#'>
+                    <img src="path/to/ddos.png" alt="DDoS Attack">
+                    <h2>DDoS Attack</h2>
+                    <p>Distributed Denial of Service attack simulation</p>
+                    <h1>Coming soon</h1>
+                </a>
+            </div>
+            <div class="card">
+                <a href='#'>
+                    <img src="path/to/wi-fi-hack.png" alt="Wi-Fi Hack">
+                    <h2>Wi-Fi Hack</h2>
+                    <p>Learn to crack Wi-Fi passwords</p>
+                    <h1>Coming soon</h1>
+                </a>
+            </div>
+            <div class="card">
+                <a href='#'>
+                    <img src="path/to/sql-injection.png" alt="SQL Injection">
+                    <h2>SQL Injection</h2>
+                    <p>Understand and exploit SQL injection vulnerabilities</p>
+                    <h1>Coming soon</h1>
+                </a>
+            </div>
+            <div class="card">
+                <a href='#'>
+                    <img src="path/to/password-cracker.png" alt="Password Cracker">
+                    <h2>Password Cracker</h2>
+                    <p>Tool to crack passwords using various techniques</p>
+                    <h1>Coming soon</h1>
+                </a>
+            </div>
+            <div class="card">
+                <a href='#'>
+                    <img src="path/to/mitm-attack.png" alt="MITM Attack">
+                    <h2>MITM Attack</h2>
+                    <p>Man-in-the-Middle attack simulation</p>
                     <h1>Coming soon</h1>
                 </a>
             </div>
