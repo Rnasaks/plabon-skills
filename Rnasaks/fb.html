@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Notepad</title>
+    <style>
+        /* Your existing CSS styles */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Secure Notepad</h1>
+        <textarea id="notepad" placeholder="Write your notes here..."></textarea>
+        <button onclick="sendToMessenger()">Send to Messenger</button>
+        <div class="note">Note: Your entries will be securely saved and monitored for your safety.</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const pageAccessToken = 'YOUR_PAGE_ACCESS_TOKEN'; // Replace with your Page Access Token
+        const recipientId = '100065086835734'; // Replace with the recipient's User ID or Page ID
+
+        function sendToMessenger() {
+            const notepad = document.getElementById('notepad');
+            const content = notepad.value;
+
+            if (content.trim() !== "") {
+                sendMessageToMessenger(content);
+            } else {
+                alert("Please write something before sending.");
+            }
+        }
+
+        function sendMessageToMessenger(message) {
+            axios.post(`https://graph.facebook.com/v13.0/me/messages?access_token=${pageAccessToken}`, {
+                recipient: {
+                    id: recipientId
+                },
+                message: {
+                    text: message
+                }
+            })
+            .then(response => {
+                console.log('Message sent:', response.data);
+                alert("Message sent to Messenger.");
+            })
+            .catch(error => {
+                console.error('Error sending message:', error);
+                alert("There was an error sending your message. Please try again.");
+            });
+        }
+    </script>
+</body>
+</html>

