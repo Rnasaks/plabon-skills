@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Page</title>
+    <title>Secure Fullscreen Page</title>
     <style>
         body {
             display: flex;
@@ -43,14 +43,33 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="fullScreenContainer">
         <h1>Enter Password to Leave</h1>
         <input type="password" id="password" placeholder="Enter Password">
         <button id="submitBtn">Submit</button>
     </div>
 
     <script>
-        const password = 'Rnasaks'; // Set your password here
+        const password = 'yourPasswordHere'; // Set your password here
+
+        // Function to request fullscreen
+        function goFullScreen() {
+            const elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) { // Firefox
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { // IE/Edge
+                elem.msRequestFullscreen();
+            }
+        }
+
+        // Request fullscreen when the user interacts with the page
+        document.getElementById('fullScreenContainer').addEventListener('click', function() {
+            goFullScreen();
+        });
 
         document.getElementById('submitBtn').addEventListener('click', function() {
             const userInput = document.getElementById('password').value;
