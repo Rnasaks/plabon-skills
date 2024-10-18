@@ -455,37 +455,37 @@ input[type="file"] {
         </div>
     </section>
                
-        <h1>Course Bundle Checkout Form</h1>
-        <div class="container"> 
-            <form id="form">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-        
-                <label for="message">Course Name:</label>
-                <textarea id="message" name="message" rows="4"></textarea>
-                
-                <label for="payment-method">Select Payment Method:</label>
-                <select id="payment-method" name="payment-method" required>
-                    <option value="bkash">bKash</option>
-                    <option value="nagad">Nagad</option>
-                    <option value="rocket">Rocket</option>
-                </select>
-        
-                <label for="last-three-digits">Last Three Digits of Payment Number:</label>
-                <input type="text" id="last-three-digits" name="last-three-digits" required>
-        
-                <label for="file">Skin Short (optional):</label>
-                <input type="file" id="file" name="file">
-        
-                <label for="amount">Amount:</label>
-                <input type="number" id="amount" name="amount" required>
-                
-                <input type="submit" value="Submit">
-            </form>
-        </div>
+    <h1>Course Bundle Checkout Form</h1>
+    <div class="container">
+        <form id="customForm">
+            <!-- Name field -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <!-- Gmail field -->
+            <label for="email">Gmail:</label>
+            <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+    
+            <!-- Payment method field -->
+            <label for="payment-method">Select Payment Method:</label>
+            <select id="payment-method" name="payment-method" required>
+                <option value="bkash">bKash</option>
+                <option value="nagad">Nagad</option>
+                <option value="rocket">Rocket</option>
+            </select>
+    
+            <!-- Last 3 digits field -->
+            <label for="last-three-digits">Last Three Digits of Payment Number:</label>
+            <input type="text" id="last-three-digits" name="last-three-digits" required maxlength="3" pattern="\d{3}" title="Please enter exactly 3 digits">
+    
+            <!-- Transaction ID (optional) -->
+            <label for="transaction-id">Transaction ID (Optional):</label>
+            <input type="text" id="transaction-id" name="transaction-id" placeholder="Enter transaction ID if available">
+    
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
 
         <div class="box">
             <h1>নিয়মাবলী</h1>
@@ -523,46 +523,44 @@ input[type="file"] {
         
         <script>
             // JavaScript code
-            document.getElementById("form").addEventListener("submit", function(event) {
-                event.preventDefault();
-                
-                const formData = new FormData();
-                formData.append('name', document.getElementById('name').value);
-                formData.append('email', document.getElementById('email').value);
-                formData.append('message', document.getElementById('message').value);
-                formData.append('payment-method', document.getElementById('payment-method').value);
-                formData.append('last-three-digits', document.getElementById('last-three-digits').value);
-                formData.append('amount', document.getElementById('amount').value);
-                
-                // Append the file only if a file is selected
-                const fileInput = document.getElementById('file');
-                if (fileInput.files.length > 0) {
-                    formData.append('file', fileInput.files[0]);
+            document.getElementById("customForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                paymentMethod: document.getElementById('payment-method').value,
+                lastThreeDigits: document.getElementById('last-three-digits').value,
+                transactionId: document.getElementById('transaction-id').value || 'N/A' // If transaction ID is empty, send 'N/A'
+            };
+            
+            fetch("https://script.google.com/macros/s/AKfycbyG1PwTvzKbKuCb596QEH-7xQwvioyChJVc1ycvHt4wBF2lg-ksc_eMQ2xyBQNDeKMW/exec", {  // Replace with your Google Apps Script URL
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams(formData)
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data === "Success") {
+                    document.getElementById("popup-message").style.display = "block";
+                    document.getElementById("overlay").style.display = "block";
+                    document.getElementById("customForm").reset();
+                } else {
+                    alert("Form submission failed. Please try again.");
                 }
-        
-                fetch("https://script.google.com/macros/s/AKfycbxJQ7s5YDnD5RCLsxQIIwDjpbtlUeX8rbtLODT9FMysqFFhajMD1H-TeuVzIASTPnPe/exec", {
-                    method: "POST",
-                    body: formData
-                })
-                .then(response => {
-                    if (response.ok) {
-                        document.getElementById("popup-message").style.display = "block";
-                        document.getElementById("overlay").style.display = "block";
-                        this.reset();
-                    } else {
-                        alert("Form submission failed. Please try again.");
-                    }
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                    alert("An unexpected error occurred. Please try again later.");
-                });
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An unexpected error occurred. Please try again later.");
             });
-        
-            document.getElementById("close-popup").addEventListener("click", function() {
-                document.getElementById("popup-message").style.display = "none";
-                document.getElementById("overlay").style.display = "none";
-            });
+        });
+
+        document.getElementById("close-popup").addEventListener("click", function() {
+            document.getElementById("popup-message").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        });
         </script>
         </body>
         </html>
