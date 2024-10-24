@@ -702,11 +702,13 @@ li {
 .centered-section h2 {
   font-size: 24px;
   margin-bottom: 15px;
+  color: white;
 }
 
 .centered-section p {
   font-size: 16px;
   margin-bottom: 10px;
+  color: yellow;
 }
 
 .centered-section h3 {
