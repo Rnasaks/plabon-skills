@@ -18,6 +18,23 @@ window.onclick = function(event) {
     }
 }
 
+// Function to open the modal
+function openModal() {
+    document.getElementById('groupModal').style.display = 'block';
+}
+
+// Function to close the modal
+function closeModal() {
+    document.getElementById('groupModal').style.display = 'none';
+}
+
+// Close the modal if the user clicks outside of it
+window.onclick = function(event) {
+    var modal = document.getElementById('groupModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
 
 // active hamburger menu 
 let menuIcon = document.querySelector(".menu-icon");
@@ -37,7 +54,7 @@ navlist.addEventListener("click",()=>{
 
 // countdown
  // Set the discount validity date
- var discountValidityDate = new Date("October 26, 2024 23:59:59");
+ var discountValidityDate = new Date("October 30, 2024 23:59:59");
 
  // Display the discount validity date
  document.getElementById("discount-validity").innerText = "Discount Validity: " + discountValidityDate.toLocaleDateString();

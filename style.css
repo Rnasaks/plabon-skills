@@ -222,7 +222,7 @@ section {
   width: 100%;
   max-width: 800px;
   padding: 0 2px;
-  margin-top: 5rem;
+  margin-top: 6rem;
 }
 
 .hero-info h3 {
@@ -231,7 +231,7 @@ section {
   color: #ff0000;
   text-transform: uppercase;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .hero-info p {
@@ -400,6 +400,58 @@ section {
   content: '➤';
   color: #eb1212;
   margin-right: 10px;
+}
+
+.referral-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
+}
+
+h2 {
+  color: #1d2b64;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.referral-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff5733;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.referral-link:hover {
+  background-color: #c70039;
+}
+
+@media (max-width: 600px) {
+  h2 {
+      font-size: 24px;
+  }
+
+  p {
+      font-size: 16px;
+  }
+
+  .referral-link {
+      font-size: 16px;
+  }
 }
 
 /* ==================== Countdown Styles ============================ */
