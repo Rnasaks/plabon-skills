@@ -481,11 +481,13 @@ input[type="file"] {
             <!-- Transaction ID (optional) -->
             <label for="transaction-id">Transaction ID (Optional):</label>
             <input type="text" id="transaction-id" name="transaction-id" placeholder="Enter transaction ID if available">
+
+            <!-- Referral code (hidden field) -->
+            <input type="hidden" id="referralCode" name="referralCode">
     
             <input type="submit" value="Submit">
         </form>
     </div>
-
 
         <div class="box">
             <h1>নিয়মাবলী</h1>
@@ -522,8 +524,15 @@ input[type="file"] {
         </div>
         
         <script>
-            // JavaScript code
-            document.getElementById("customForm").addEventListener("submit", function(event) {
+           // Get referral code from URL and insert into hidden field
+        const urlParams = new URLSearchParams(window.location.search);
+        const referralCode = urlParams.get('referral');
+        if (referralCode) {
+            document.getElementById('referralCode').value = referralCode;
+        }
+
+        // Handle form submission
+        document.getElementById("customForm").addEventListener("submit", function(event) {
             event.preventDefault();
             
             const formData = {
@@ -531,10 +540,11 @@ input[type="file"] {
                 email: document.getElementById('email').value,
                 paymentMethod: document.getElementById('payment-method').value,
                 lastThreeDigits: document.getElementById('last-three-digits').value,
-                transactionId: document.getElementById('transaction-id').value || 'N/A' // If transaction ID is empty, send 'N/A'
+                transactionId: document.getElementById('transaction-id').value || 'N/A',
+                referralCode: document.getElementById('referralCode').value
             };
-            
-            fetch("https://script.google.com/macros/s/AKfycbyG1PwTvzKbKuCb596QEH-7xQwvioyChJVc1ycvHt4wBF2lg-ksc_eMQ2xyBQNDeKMW/exec", {  // Replace with your Google Apps Script URL
+
+            fetch("https://script.google.com/macros/s/AKfycbyelgYRxUJjmJ7k4eQgEX2NSGDrePunHoWIWIbljanJ0H2yGVpp9mOJUY_n-2eM8n52/exec", { // Replace with your Google Apps Script URL
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -544,8 +554,7 @@ input[type="file"] {
             .then(response => response.text())
             .then(data => {
                 if (data === "Success") {
-                    document.getElementById("popup-message").style.display = "block";
-                    document.getElementById("overlay").style.display = "block";
+                    alert("Form Submitted Successfully! Referral credited if applicable.");
                     document.getElementById("customForm").reset();
                 } else {
                     alert("Form submission failed. Please try again.");
@@ -555,11 +564,6 @@ input[type="file"] {
                 console.error("Error:", error);
                 alert("An unexpected error occurred. Please try again later.");
             });
-        });
-
-        document.getElementById("close-popup").addEventListener("click", function() {
-            document.getElementById("popup-message").style.display = "none";
-            document.getElementById("overlay").style.display = "none";
         });
         </script>
         </body>

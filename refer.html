@@ -129,71 +129,42 @@
     </div>
 
     <script>
-        let totalEarnings = 0;
+       let totalEarnings = 0;
 
-        // Referral Link Generation
-        document.getElementById('referralForm').addEventListener('submit', function (event) {
-            event.preventDefault();
+// Referral Link Generation
+document.getElementById('referralForm').addEventListener('submit', function (event) {
+    event.preventDefault();
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const referralCode = btoa(`${name}-${email}`).slice(0, 8);
-            const referralLink = `https://bdhackers.netlify.app/payment?referral=${referralCode}`;
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const referralCode = btoa(`${name}-${email}`).slice(0, 8);
+    const referralLink = `https://bdhackers.netlify.app/payment?referral=${referralCode}`;
 
-            document.getElementById('referralLink').value = referralLink;
-            document.getElementById('referralLinkSection').style.display = 'block';
+    document.getElementById('referralLink').value = referralLink;
+    document.getElementById('referralLinkSection').style.display = 'block';
 
-            // Update the dashboard with user info
-            updateUserInfo(name, email);
-        });
+    // Update the dashboard with user info
+    updateUserInfo(name, email);
+});
 
-        // Copy Referral Link to Clipboard
-        function copyReferralLink() {
-            const referralLinkInput = document.getElementById('referralLink');
-            referralLinkInput.select();
-            document.execCommand('copy');
-            alert('Referral Link Copied!');
-        }
+// Copy Referral Link to Clipboard
+function copyReferralLink() {
+    const referralLinkInput = document.getElementById('referralLink');
+    referralLinkInput.select();
+    document.execCommand('copy');
+    alert('Referral Link Copied!');
+}
 
-        // Simulate Earnings when the referral buys the course
-        const urlParams = new URLSearchParams(window.location.search);
-        const referralCode = urlParams.get('referral');
-        if (referralCode) {
-            totalEarnings += 100; // Add 100 taka per referral who buys
-            updateDashboard();
-        }
-
-        // Update Earnings Dashboard
-        function updateDashboard() {
-            document.getElementById('totalEarned').textContent = totalEarnings;
-        }
-
-        // Update User Info in the Dashboard
-        function updateUserInfo(name, email) {
-            const userInfoContainer = document.getElementById('userInfoContainer');
-            userInfoContainer.innerHTML = `
-                <div class="dashboard-row">
-                    <p>Name: ${name}</p>
-                    <p>Email: ${email}</p>
-                </div>
-            `;
-        }
-
-        // Payout Request
-        document.getElementById('payoutForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            const payoutNumber = document.getElementById('payoutNumber').value;
-            const payoutAmount = parseInt(document.getElementById('payoutAmount').value);
-
-            if (payoutAmount <= totalEarnings) {
-                totalEarnings -= payoutAmount;
-                alert(`Payout of ${payoutAmount} Taka requested to number ${payoutNumber}.`);
-                updateDashboard();
-            } else {
-                alert("Insufficient balance for payout.");
-            }
-        });
+// Update User Info in the Dashboard
+function updateUserInfo(name, email) {
+    const userInfoContainer = document.getElementById('userInfoContainer');
+    userInfoContainer.innerHTML = `
+        <div class="dashboard-row">
+            <p>Name: ${name}</p>
+            <p>Email: ${email}</p>
+        </div>
+    `;
+}
     </script>
 
 </body>
