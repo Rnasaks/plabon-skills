@@ -5,382 +5,305 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Bundle Checkout</title>
     <meta name="description" content="BD Hackers - Bundle Package Checkout. Learn ethical hacking with our course package. Download now by sending money and submitting the form.">
-    <!-- CSS Styles -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 <style>
-    /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
-
-/* Reset and global styles */
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    list-style: none;
-    scroll-behavior: smooth;
-}
-
-/* CSS Variables */
-:root {
-    --bg-color: #e3edf7;
-    --gradient-white-bg: linear-gradient(0deg, #fff 0%, #edf4fa 51%, #e5eef7 100%);
-    --gradient-color-bg: linear-gradient(180deg, rgba(247, 1, 120, 1) 0%, rgba(160, 8, 156, 1) 51%, rgba(99, 13, 178, 1) 100%);
-    --main-color: #e6006d;
-    --font-color: #90979f;
-    --hover-box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-}
-
-/* Body styles */
+/* General Styles */
 body {
+    margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: var(--bg-color);
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #f5f5f5;
     overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
 }
 
-/* Header styles */
+/* Header */
 header {
-    padding: 15px 8%;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-between; /* Changed to space-between */
-    background: var(--gradient-white-bg);
-    z-index: 100;
-    transition: .3s;
-    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 header .logo {
-    font-size: 1.7rem;
-    font-weight: 700;
-    margin-right: auto; /* Added to push BD Hackers to the left */
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff7f50;
+    text-decoration: none;
 }
 
-/* Button styles */
-.btn {
-    background: var(--gradient-color-bg);
+header .logo span {
     color: #fff;
-    padding: 8px 10px;
+}
+
+header .right-header {
+    display: flex;
+    align-items: center;
+}
+
+header .right-header .btn {
+    background: #ff7f50;
+    color: #fff;
+    padding: 10px 20px;
     border-radius: 5px;
-    font-weight: 500;
-    transition: all .3s ease;
+    text-decoration: none;
+    margin-right: 20px; /* Space added on the right */
+    transition: 0.3s;
 }
 
-.btn:hover, .btn-box .d-CV:hover {
-    box-shadow: var(--hover-box-shadow);
+header .right-header .btn:hover {
+    background: #ffa07a;
 }
 
-/* Menu icon styles */
-.menu-icon {
-    position: relative;
-    display: block;
-    width: 30px;
-    height: 30px;
+header .menu-icon {
+    display: flex;
+    flex-direction: column;
     cursor: pointer;
 }
 
-.menu-icon .bar,
-.menu-icon::after,
-.menu-icon::before {
-    content: "";
-    display: none;
-    width: 100%;
-    height: 4px;
-    border-radius: 3px;
-    background: #000;
-    margin: 6px 0;
-    transition: .4s;
+header .menu-icon .bar {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    margin: 3px 0;
 }
 
-.menu-icon.active::before {
-    transform: rotate(-45deg) translate(-6px, 6px);
-}
-
-.menu-icon.active::after {
-    transform: rotate(45deg) translate(-8px, -8px);
-}
-
-.menu-icon.active .bar {
-    opacity: 0;
-}
-
-
-/* Hero info styles */
-.hero-info {
-    width: 100%;
+/* Hero Section */
+.home {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    margin-top: 5rem;
+    padding: 100px 20px;
 }
 
 .hero-info h1 {
-    font-size: 42px;
+    font-size: 48px;
+    color: #ff7f50;
     margin-bottom: 20px;
-    color: green; /* Adjust color if needed */
+    animation: fadeIn 1s ease-in-out;
 }
 
 .hero-info h2 {
     font-size: 24px;
-    color: blue; /* Adjust color if needed */
-    line-height: 1.6;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .hero-info p {
-    font-size: 36px;
-    color: rgb(222, 28, 199); /* Adjust color if needed */
-    font-weight: bold;
-    
-}
-
-.hero-info h3 {
-    font-size: 24px;
-    color: rgb(255, 0, 4); /* Adjust color if needed */
+    font-size: 18px;
     line-height: 1.6;
-    margin-bottom: 30px;
-}
-
-.hero-info h2 span {
-    font-weight: bold;
-}
-
-.img-hero {
-    text-align: center;
-}
-
-.img-hero img{
-  width: 40vw;
-  height: auto;
-}
-
-/* For devices with a maximum width of 768px (typical tablets) */
-@media (max-width: 768px) {
-  .img-hero img {
-    width: 80vw; /* Adjust the width as per your design */
-    height: auto;
-  }
-}
-
-/* For devices with a maximum width of 576px (typical smartphones) */
-@media (max-width: 576px) {
-  .img-hero img {
-    width: 90vw; /* Adjust the width as per your design */
-    height: auto;
-  }
-}
-
-/* Style for the copy button */
-button {
-    background-color: #4CAF50; /* Green background color */
-    border: none; /* No border */
-    color: white; /* White text color */
-    padding: 8px 16px; /* Padding */
-    text-align: center; /* Centered text */
-    text-decoration: none; /* No underline */
-    display: inline-block; /* Display as inline-block */
-    font-size: 16px; /* Font size */
-    margin-left: 10px; /* Margin between button and number */
-    cursor: pointer; /* Cursor style */
-    border-radius: 5px; /* Rounded corners */
-}
-
-/* Style for the copy button on hover */
-button:hover {
-    background-color: #45a049; /* Darker green background color */
-}
-
-
-
-/* Additional CSS for the table and container */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 40px;
-}
-
-.box {
-    width: 80%; /* Adjusted to take up 80% of the container */
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
     margin-bottom: 20px;
+}
+
+/* Highlighted Boxes */
+.hero-info .highlight-box-auto {
+    background-color: #1e3a5f;
+    color: red;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-weight: bold;
     text-align: center;
 }
 
-/* Updated CSS for the bullet icons */
-.box p {
-    position: relative;
-    padding-left: 20px;
-    margin-bottom: 10px; /* Adjust spacing between each step */
-    text-align: left; /* Left align text */
+.hero-info .highlight-box-send-money {
+    background-color: #2c3e50;
+    color: #ff7f50;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
 }
 
-.box p::before {
-    content: '\2022'; /* Bullet character */
-    position: absolute;
-    left: 0;
-    top: 50%; /* Center the bullet vertically */
-    transform: translateY(-50%);
-    color: var(--main-color); /* Color of the bullet */
+/* Highlighted Boxes */
+.hero-info .highlight-box-1,
+.hero-info .highlight-box-2 {
+    background: rgba(255, 255, 255, 0.1); /* লাইট ট্রান্সপারেন্ট ব্যাকগ্রাউন্ড */
+    padding: 20px; /* প্যাডিং */
+    border-radius: 10px; /* গোলাকার কোণ */
+    margin-top: 20px; /* প্রতিটি বক্সের মধ্যে ফাঁকা স্থান */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* শেডো */
+    color: #ffd700; /* টেক্সটের জন্য গোল্ডেন রং */
+    font-weight: bold; /* মোটা ফন্ট */
 }
 
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-    .container {
-        flex-direction: column; /* Stack boxes vertically on smaller screens */
-    }
-
-    .box {
-        width: 100%; /* Take up full width on smaller screens */
-    }
-
-    .iframe-container {
-        margin-top: 20px; /* Adjust margin for iframe container */
-    }
+/* Text Alignment and Margin for Each Box */
+.hero-info .highlight-box-1 p,
+.hero-info .highlight-box-2 p {
+    margin: 0;
 }
 
+/* Copy Button */
+button {
+    background: #ff7f50;
+    border: none;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ffa07a;
+}
+
+/* Center the heading */
 h1 {
     text-align: center;
-    color: #e91397;
+    color: #ff7f50;
+    font-size: 32px; /* Larger font size for heading */
+    margin-bottom: 20px;
 }
 
-/* Form section */
+/* Updated Form Section */
 .container {
     max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.1); /* Softer background color */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* More pronounced shadow */
+    text-align: center;
 }
 
 label {
     font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+    font-size: 18px; /* Larger label text */
+    color: #ff7f50;
 }
 
-input[type="text"],
-input[type="email"],
-select,
-textarea,
-input[type="file"],
-input[type="number"],
-input[type="submit"] {
+input, select {
     width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 12px; /* Larger padding for inputs */
+    margin-bottom: 20px; /* More spacing between fields */
+    border: 1px solid #ff7f50; /* Highlight border color */
+    border-radius: 8px;
+    background: #f5f5f5;
+    font-size: 16px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #ffa07a; /* Highlight border on focus */
+    box-shadow: 0 0 5px rgba(255, 127, 80, 0.7);
 }
 
 input[type="submit"] {
-    background-color: #4caf50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
+    background: #ff7f50;
+    color: #fff;
+    font-size: 18px; /* Slightly larger text */
     cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px; /* Padding for better button design */
+    transition: background-color 0.3s ease;
 }
 
 input[type="submit"]:hover {
-    background-color: #45a049;
+    background: #ffa07a;
 }
 
-input[type="file"] {
-    margin-top: 10px;
+/* Rules Section */
+.box {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    color: #fff;
 }
 
-.error {
-    color: red;
+.box h1 {
+    font-size: 28px;
+    color: #ff7f50;
+}
+
+.box ul {
+    margin-top: 20px;
+    list-style: none;
+    padding: 0;
+}
+
+.box ul li {
+    margin-bottom: 10px;
+}
+
+.box ul li::before {
+    content: '★';
+    color: #ff7f50;
+    margin-right: 10px;
+}
+
+/* Footer Section */
+.container .copyright,
+.container .credits {
+    text-align: center;
     font-size: 14px;
+    margin: 20px 0;
+    color: #f5f5f5;
 }
 
-@media screen and (max-width: 768px) {
-    .container {
-        max-width: 80%;
-    }
+.container .credits a {
+    color: #ff7f50;
+    text-decoration: none;
 }
 
+/* Popup Message */
 #popup-message {
-    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 500px;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.25);
-    border-radius: 8px;
-    padding: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: none;
+    z-index: 20;
     text-align: center;
-    z-index: 1000;
 }
 
 #popup-message p {
-    margin: 0 0 10px;
-    color: #e6006d;
-    font-weight: bold;
+    margin-bottom: 15px;
 }
 
 #popup-message ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
 }
 
-#popup-message li {
-    margin: 5px 0;
+#popup-message ul li {
+    margin-bottom: 10px;
 }
 
 #popup-message a {
-    color: #007BFF;
+    color: #ff7f50;
     text-decoration: none;
+    font-weight: bold;
 }
 
-#popup-message a:hover {
-    text-decoration: underline;
-}
-
-#popup-message button {
-    background-color: #4CAF50;
-    color: white;
+#close-popup {
+    margin-top: 20px;
+    background: #ff7f50;
+    color: #fff;
     border: none;
-    cursor: pointer;
     padding: 10px 20px;
-    font-size: 16px;
-    margin-top: 10px;
-    border-radius: 4px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-#popup-message button:hover {
-    background-color: #45a049;
-}
-
+/* Overlay */
 .overlay {
     display: none;
     position: fixed;
@@ -388,53 +311,46 @@ input[type="file"] {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10;
 }
 
-@media (max-width: 600px) {
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-wrap: wrap;
+    }
+
+    .hero-info h1 {
+        font-size: 36px;
+    }
+
+    .hero-info p {
+        font-size: 16px;
+    }
+
     .container {
-        padding: 15px;
-        margin: 15px;
-    }
-
-    #popup-message {
-        padding: 15px;
+        width: 90%;
     }
 }
-
-.copyright,
-.credits {
-  text-align: center;
-  color: #000; /* Set your default text color */
-}
-
-.copyright span {
-  color: red; /* Set the text color to red */
-}
-
-#footer .copyright {
-  padding-top: 20px;
-}
-
-#footer .credits {
-  padding-top: 10px;
-  font-size: 13px;
-}
-
 
 </style>
-    <!-- boxicon css link -->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 </head>
 <body>
     <div class="overlay"></div>
     <header>
         <a href="index.html" class="logo"><span>BD</span>Hackers</a>
         <div class="right-header">
-            <a href=" https://wa.me/qr/VUB5TZP3KBQHG1 " class="btn"> WhatsApp <i class='bx bx-message-dots' ></i></a>
+            <a href=" https://wa.me/qr/VUB5TZP3KBQHG1 " class="btn"> WhatsApp <i class='bx bx-message-dots'></i></a>
             <div class="menu-icon">
                 <div class="bar"></div>
             </div>
@@ -443,122 +359,165 @@ input[type="file"] {
 
     <section class="home" id="home">
         <div class="hero-info">
-            <h1>How To Download Full Bundle?</h1>
-            <h2>নিচের যেকোনো নাম্বারে সেন্ড মানি করে সাথে দেওয়া ফরমটি পূরণ করে সাবমিট করুন।</h2>
-                <p>Sent Money Number</p> <br>
-              <h2> Bkash :- <span id="copyNumber1">01959550218</span> <button onclick="copyNumber('copyNumber1')">Copy</button> <br>
+            <h1>কোর্স কেনার নিয়ম:</h1>
+            <div class="highlight-box-auto">
+                আমাদের সবকিছু অটোমেটিক। তাই প্রতারিত হওয়ার সুযোগ নেই।
+            </div>
+            <h2>যেভাবে কিনবেন:</h2>
+            <p>সেন্ড মানি করে নিচের ফর্মটি সঠিকভাবে পূরণ করলে অটোমেটিক ভাবে আপনার কাঙ্ক্ষিত প্যাকেজটি পেয়ে যাবেন। আমাদের সব কিছু অটোমেটিক আপলোড করা আছে। ওয়েবসাইট ছাড়াও এজেন্টের কাছে থেকে মেসেঞ্জারেও নিতে পারবেন। এজন্য ইনবক্স বা মেসেঞ্জারে নক দিন। প্রয়োজনে WhatsApp বা কল করুন 01959550218 নাম্বারে।</p>
+            <h2>নিচের যেকোনো নাম্বারে টাকা সেন্ড মানি করে সাথে দেওয়া ফরমটি পূরণ করে সাবমিট করুন।</h2>
+            <div class="highlight-box-send-money">
+                Send Money Number: 0123456789
+            </div>
+            <h2>Bkash :- <span id="copyNumber1">01959550218</span> <button onclick="copyNumber('copyNumber1')">Copy</button> <br>
                 Nagad :- <span id="copyNumber2">01794009609</span> <button onclick="copyNumber('copyNumber2')">Copy</button> <br>
-                Rocket :- <span id="copyNumber2">017940096094</span> <button onclick="copyNumber('copyNumber2')">Copy</button>
-            </h2>     
-            <h2>সঠিকভাবে সাবমিট করার সাথে সাথে অটোমেটিক এক্সেস পাবেন এবং সবকিছু ডাউনলোড করতে পারবেন।</h2> 
-            <h3>অথবা এজেন্টের সাথে কথা বলে সরাসরি নিতে পারবেন মেসেঞ্জার বা হোয়াটসঅ্যাপে। <br>প্রয়োজনে কল/হোয়াটসঅ্যাপ করুন: 01959550218 নাম্বারে</h3>   
+                Rocket :- <span id="copyNumber3">017940096094</span> <button onclick="copyNumber('copyNumber3')">Copy</button>
+            </h2>
+            <h2>সঠিকভাবে সাবমিট করার সাথে সাথে অটোমেটিক এক্সেস পাবেন এবং সবকিছু ডাউনলোড করতে পারবেন।</h2>
+            <div class="hero-info">
+                <!-- Box 1 -->
+                <div class="highlight-box-1">
+                    <p>* ফুল প্যাকেজ নিলে Telegram VIP -এর লাইফটাইম এক্সেস পাবেন।</p>
+                </div>
+            
+                <!-- Box 2 -->
+                <div class="highlight-box-2">
+                    <p>* যেকোন একটি কোর্সে কোর্স নিলে কোন টেলিগ্রাম দেয়া হয় না।</p>
+                </div>
+            </div>
         </div>
     </section>
-               
-    <h1>Course Bundle Checkout Form</h1>
+
+    <h1>কোর্স কেনার ফর্ম:</h1>
     <div class="container">
         <form id="customForm">
+            <!-- Course Name field -->
+            <label for="course-name">কোর্স নাম:</label>
+            <input type="text" id="course-name" name="course-name" placeholder="কোর্স নাম লিখুন" required>
+            
             <!-- Name field -->
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+            <label for="name">নাম:</label>
+            <input type="text" id="name" name="name" placeholder="আপনার নাম লিখুন" required>
             
             <!-- Gmail field -->
-            <label for="email">Gmail:</label>
+            <label for="email">জিমেইল:</label>
             <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
-    
+            
             <!-- Payment method field -->
-            <label for="payment-method">Select Payment Method:</label>
+            <label for="payment-method">পেমেন্ট মেথড নির্বাচন করুন:</label>
             <select id="payment-method" name="payment-method" required>
-                <option value="bkash">bKash</option>
-                <option value="nagad">Nagad</option>
-                <option value="rocket">Rocket</option>
+                <option value="" disabled selected>মেথড নির্বাচন করুন</option>
+                <option value="bkash">বিকাশ</option>
+                <option value="nagad">নগদ</option>
+                <option value="rocket">রকেট</option>
             </select>
-    
+            
             <!-- Last 3 digits field -->
-            <label for="last-three-digits">Last Three Digits of Payment Number:</label>
-            <input type="text" id="last-three-digits" name="last-three-digits" required maxlength="3" pattern="\d{3}" title="Please enter exactly 3 digits">
-    
-            <!-- Transaction ID (optional) -->
-            <label for="transaction-id">Transaction ID (Optional):</label>
-            <input type="text" id="transaction-id" name="transaction-id" placeholder="Enter transaction ID if available">
-    
-            <input type="submit" value="Submit">
+            <label for="last-three-digits">পেমেন্ট নাম্বারের শেষ তিন ডিজিট:</label>
+            <input type="text" id="last-three-digits" name="last-three-digits" placeholder="শেষ তিন ডিজিট" required maxlength="3" pattern="\d{3}" title="দয়া করে ঠিক ৩টি ডিজিট প্রবেশ করুন">
+            
+            <!-- Submit button -->
+            <input type="submit" value="সাবমিট করুন">
         </form>
-    </div>
-
-        <div class="box">
-            <h1>নিয়মাবলী</h1>
-            <p><span class="icon"></span> প্রথম, দ্বিতীয় এবং তৃতীয় Box এ নাম, জিমেইল এবং মেসেজ লিখে দেবেন।</p>
-            <p><span class="icon"></span> চতুর্থ বক্সে পেমেন্ট অপশন সিলেক্ট করুন।</p>
-            <p><span class="icon"></span> পঞ্চম বক্সে যে নাম্বার থেকে টাকা পাঠিয়েছেন তার লাস্ট তিনটি নাম্বার দেবেন।</p>
-            <p><span class="icon"></span> ষষ্ঠ বক্সে কত টাকা পাঠিয়েছেন তা দেবেন।</p>
-            <p><span class="icon"></span> এরপর সাবমিট বাটনে ক্লিক করবেন।</p>
-            <p><span class="icon"></span> সাবমিট করলে আমাদের ফুল বান্ডেল ডাউনলোড লিংক পেয়ে যাবেন। সেটায় এক্সেস রিকোয়েস্ট পাঠিয়ে দিবেন। কিছুক্ষণের মধ্যে অথোরিটি ফুল এক্সেস দিয়ে দিবে৷   তারপর টেলিগ্রামে যোগ হয়ে নিবেন৷ </p>
-            <p><span class="icon"></span> আপনার কোন প্রশ্ন থাকলে মেসেঞ্জারে বা হোয়াটসঅ্যাপে জানাবেন।</p>
-        </div>
-    </div>
-</div>
-
-        <div id="popup-message">
-            <p>Form Submit Successful! <br> Please Send Join Request To Access Course Bundle. Here are the links:</p>
-            <ul>
-                <li><a href="https://t.me/+PrUMn0Vpn8gzYmI1" target="_blank">Telegram Group</a></li>
-                <li><a href="https://drive.google.com/drive/folders/1mBT9wnkVFFPsU4rcYmoTwwKe5o9lU3pz" target="_blank">Google Drive Folder</a></li>
-                <li><a href="https://chat.whatsapp.com/GJHDILVZhQK1J1i42hZ1O9" target="_blank">WhatsApp Group</a></li>
-            </ul>
-            <button id="close-popup">Close</button>
-        </div>
-        
-        <div class="overlay" id="overlay"></div>
-        
-        <div class="container">
-            <div class="copyright">
-                &copy; Copyright <strong><span>Bd Hackers</span></strong>. All Rights Reserved
-            </div>
-            <div class="credits">
-                Designed by <a href="https://rnasaksbd.000webhostapp.com/"><strong><span>RNASAKS</span></strong></a>
-            </div>
-        </div>
-        
-        <script>
-            document.getElementById("customForm").addEventListener("submit", function(event) {
-                event.preventDefault();
-                
-                const formData = {
-                    name: document.getElementById('name').value,
-                    email: document.getElementById('email').value,
-                    paymentMethod: document.getElementById('payment-method').value,
-                    lastThreeDigits: document.getElementById('last-three-digits').value,
-                    transactionId: document.getElementById('transaction-id').value || 'N/A' // If transaction ID is empty, send 'N/A'
-                };
-                
-                fetch("https://script.google.com/macros/s/AKfycbxOQnKXDKE4pYtOqDB9vxAzDWZPfWRYKEnLAmKeNoe4-EWTwENnaWJDnE6KtKkpSAyT/exec", {  // Replace with your Google Apps Script Web App URL
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: new URLSearchParams(formData)
-                })
-                .then(response => response.text())
-                .then(data => {
-                    if (data === "Success") {
-                        document.getElementById("popup-message").style.display = "block";
-                        document.getElementById("overlay").style.display = "block";
-                        document.getElementById("customForm").reset();
-                    } else {
-                        alert("Form submission failed. Please try again.");
-                    }
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                    alert("An unexpected error occurred. Please try again later.");
-                });
-            });
+    </div>        
     
-            document.getElementById("close-popup").addEventListener("click", function() {
-                document.getElementById("popup-message").style.display = "none";
-                document.getElementById("overlay").style.display = "none";
-            });
-        </script>
-        </body>
-        </html>
+
+    <div class="box">
+        <h1>নিয়মাবলী</h1>
+        <p><span class="icon"></span> ফর্মটি সঠিকভাবে পূরণ করলে অটোমেটিক আপনার ইমেইলে কোর্স চলে যাবে। ইমেইল চেক করে কোর্স ওপেন করলে ভিডিওসহ ফাইল ও অন্যান্য সকল কিছু পেয়ে যাবেন। অথবা গুগোল ড্রাইভের শেয়ার অপশনে ফাইল খুঁজে পাবেন।</p>
+        <p><span class="icon"></span> তারপর আপনি যে কোর্স একটি করতে চান সেটির ভিডিও টিউটোরিয়াল দেখে যা বলা আছে তা ফলো করুন। নির্দেশনা অনুসারে কাজ করলে আশা করি আপনি সফল হবেন।</p>
+        <p style="color: #ff7f50; font-size: 20px;"><span class="icon"></span> কোন প্রয়োজনে কথা বলুন মেসেঞ্জারে।</p>
+        <ul>
+            <li>☑ সবগুলো হ্যাকই মোবাইল ফোনে করতে পারবেন। কোনো কোডিং লাগবে না।</li>
+            <li>☑ প্রতিটি টিউটোরিয়াল ও ফাইল ডাউনলোড করতে পারবেন।</li>
+            <li>☑ আমাদের ড্রাইভের এক্সেস আজীবনের জন্য পাবেন।</li>
+            <li>☑ আমাদের ৪/৫ ধরনের আর্নিং সাইটের এক্সেস। ৪৫ দিনের মধ্যে ইনভেস্টমেন্ট রিটার্ন ও ইনকাম গ্যারান্টি।</li>
+            <li>☑ বন্ধুদেরকে প্যাকেজ সেল করে বা রিসেল করে প্রতি রেফারে ১০% টাকা ইনকামের সুযোগ।</li>
+            <li>☑ ওয়েবসাইট অথবা মেসেঞ্জার থেকেও প্যাকেজ কিনতে পারবেন।</li>
+            <li>☑ ৩০০০+ কপিরাইট ফ্রি রিলস পাবেন। যেগুলো আপলোড করে মানিটাইজেশন নিতে পারবেন।</li>
+            <li>☑ লাইফটাইম আমাদের প্লাটফরম ইউজ করতে পারবেন।</li>
+            <li>☑ ২৪/৭ দিন আমাদের এক্সপার্ট সাপোর্ট পাবেন।</li>
+            <li>☑ টেলিগ্রাম টিম সাপোর্টসহ সাথে আরো অনেক সিক্রেট কিছু আজীবনের জন্য পাবেন। যেগুলো এখানে উল্লেখ করা নেই।</li>
+        </ul>
+    </div>
+
+    <div id="popup-message">
+        <p>Form Submit Successful! <br> Please Send Join Request To Access Course Bundle. Here are the links:</p>
+        <ul>
+            <li><a href="https://t.me/+PrUMn0Vpn8gzYmI1" target="_blank">Telegram Group</a></li>
+            <li><a href="https://drive.google.com/drive/folders/1mBT9wnkVFFPsU4rcYmoTwwKe5o9lU3pz" target="_blank">Google Drive Folder</a></li>
+            <li><a href="https://chat.whatsapp.com/GJHDILVZhQK1J1i42hZ1O9" target="_blank">WhatsApp Group</a></li>
+        </ul>
+        <button id="close-popup">Close</button>
+    </div>
+        
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Bd Hackers</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+            Designed by <a href="https://rnasaksbd.000webhostapp.com/"><strong><span>RNASAKS</span></strong></a>
+        </div>
+    </div>
+    
+    <script>
+document.getElementById("customForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // Capture form data and ensure last-three-digits is treated as a string
+    const formData = {
+        'course-name': document.getElementById('course-name').value, // Course name
+        'name': document.getElementById('name').value,              // Name
+        'email': document.getElementById('email').value,            // Email
+        'payment-method': document.getElementById('payment-method').value, // Payment method
+        'last-three-digits': document.getElementById('last-three-digits').value.toString() // Ensure string
+    };
+
+    // Send form data to Google Apps Script
+    fetch("https://script.google.com/macros/s/AKfycbyBToUYPyzGEptgYJK8WEs_OCVFWCHez8qyDr8wDoyqDAKG6dHyxh3NThJ8-nbJoTKo/exec", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams(formData) // URL-encoded format
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log("Response from Google Apps Script:", data); // Log the response from Google Apps Script
+        if (data === "Success") {
+            document.getElementById("popup-message").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("customForm").reset(); // Reset form after submission
+        } else {
+            alert("Form submission failed. Please try again.");
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error); // Log any errors that occur during the fetch request
+        alert("An error occurred. Please try again.");
+    });
+});
+
+// Close the popup message when "Close" button is clicked
+document.getElementById("close-popup").addEventListener("click", function() {
+    document.getElementById("popup-message").style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+});
+
+
+// Function to copy text (e.g., phone number)
+function copyNumber(elementId) {
+    const numberElement = document.getElementById(elementId);
+    const textArea = document.createElement("textarea");
+    textArea.value = numberElement.textContent.trim();
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
+    alert("Number copied: " + textArea.value);
+}
+    </script>
+</body>
+</html>

