@@ -284,12 +284,9 @@ section {
 
 .hero-info h1 {
   font-size: 24px;
-  color: rgb(23, 216, 223);
   font-family: 'Courier New', Courier, monospace;
   margin: 15px auto;
   max-width: 900px;
-  text-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffcc;
-  background: rgba(0, 0, 0, 0.6);
   padding: 10px;
   border-radius: 10px;
 }
@@ -298,6 +295,61 @@ section {
   max-width: 800px;
   padding: 0 2px;
   margin-top: 6rem;
+}
+:root {
+  --glow-color: #00ffe7;
+  --text-color: #ffffff;
+  --font-size: 2.8rem;
+  --glow-blur: 12px;
+  --animation-duration: 1.5s;
+}
+
+.glow-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: var(--font-size);
+  color: var(--text-color);
+  text-align: center;
+  letter-spacing: 2px;
+  position: relative;
+  margin-top: 50px;
+  animation: slideInUp var(--animation-duration) ease-out both;
+  transition: color 0.3s ease-in-out;
+}
+
+.glow-title::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(-50%);
+  background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
+  filter: blur(var(--glow-blur));
+  z-index: -1;
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
 }
 
 .hero-info h3 {
